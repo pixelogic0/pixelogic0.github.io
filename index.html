@@ -676,20 +676,21 @@ window.BAB = {
     // { num: "10.000", texto: "seguidores el 1 de diciembre de 2026" },
   ],
   // Vídeos: con `video` se pueden ver; sin él salen como «Próximamente» (con su portada o, si no hay, un dibujo).
+  // Con `desde` (hora de publicación en Instagram), el vídeo sale como «Próximamente» hasta esa hora y luego se activa solo.
   videos: [
     { titulo: "¿Hasta dónde oyes?", tema: "cuerpo", portada: "p2_oido.jpg", video: "p2_oido.mp4" },
     { titulo: "¿Qué es una aurora?", tema: "espacio", portada: "p1_aurora.png", video: "p1_aurora.mp4" },
-    { titulo: "¿A qué distancia cayó el rayo?", tema: "alrededor", portada: "p3_trueno.jpg" },
-    { titulo: "Aguanta la respiración", tema: "cuerpo", portada: "p4_respira.jpg" },
-    { titulo: "¿Cuál es tu ojo jefe?", tema: "cuerpo", portada: "p5_ojo.jpg" },
-    { titulo: "¿Por qué odias tu voz grabada?", tema: "cuerpo", portada: "p6_voz.jpg" },
-    { titulo: "¿Los delfines tienen nombre?", tema: "animales", portada: "p7_delfines.jpg" },
-    { titulo: "6.000 millones de letras sin erratas", tema: "cuerpo", portada: "p8_adn.jpg" },
-    { titulo: "¿Baya o no?", tema: "alrededor", portada: "p9_baya.jpg" },
-    { titulo: "La gota que aguanta un martillo", tema: "alrededor", portada: "p10_lagrima.jpg" },
-    { titulo: "El sudoku contra un robot que no piensa", tema: "alrededor", portada: "p11_sudoku.jpg" },
-    { titulo: "El disparo más rápido del mar", tema: "animales", portada: "p12_gamba.jpg" },
-    { titulo: "Las cacas cúbicas del wómbat", tema: "animales", portada: "p13_wombat.jpg" },
+    { titulo: "¿A qué distancia cayó el rayo?", tema: "alrededor", portada: "p3_trueno.jpg", video: "p3_trueno.mp4", desde: "2026-11-02T15:00:00+01:00" },
+    { titulo: "Aguanta la respiración", tema: "cuerpo", portada: "p4_respira.jpg", video: "p4_respira.mp4", desde: "2026-11-02T19:00:00+01:00" },
+    { titulo: "¿Cuál es tu ojo jefe?", tema: "cuerpo", portada: "p5_ojo.jpg", video: "p5_ojo.mp4", desde: "2026-11-02T22:00:00+01:00" },
+    { titulo: "¿Por qué odias tu voz grabada?", tema: "cuerpo", portada: "p6_voz.jpg", video: "p6_voz.mp4", desde: "2026-11-03T10:00:00+01:00" },
+    { titulo: "¿Los delfines tienen nombre?", tema: "animales", portada: "p7_delfines.jpg", video: "p7_delfines.mp4", desde: "2026-11-03T15:00:00+01:00" },
+    { titulo: "6.000 millones de letras sin erratas", tema: "cuerpo", portada: "p8_adn.jpg", video: "p8_adn.mp4", desde: "2026-11-03T19:00:00+01:00" },
+    { titulo: "¿Baya o no?", tema: "alrededor", portada: "p9_baya.jpg", video: "p9_baya.mp4", desde: "2026-11-03T22:00:00+01:00" },
+    { titulo: "La gota que aguanta un martillo", tema: "alrededor", portada: "p10_lagrima.jpg", video: "p10_lagrima.mp4", desde: "2026-11-04T10:00:00+01:00" },
+    { titulo: "El sudoku contra un robot que no piensa", tema: "alrededor", portada: "p11_sudoku.jpg", video: "p11_sudoku.mp4", desde: "2026-11-04T15:00:00+01:00" },
+    { titulo: "El disparo más rápido del mar", tema: "animales", portada: "p12_gamba.jpg", video: "p12_gamba.mp4", desde: "2026-11-04T19:00:00+01:00" },
+    { titulo: "Las cacas cúbicas del wómbat", tema: "animales", portada: "p13_wombat.jpg", video: "p13_wombat.mp4", desde: "2026-11-04T22:00:00+01:00" },
   ],
 };
 /* ============================================================= */
@@ -892,6 +893,7 @@ window.BAB = {
   /* ---------- Pantallas de vídeo ---------- */
   const animadas = [];
   function pantalla(v) {
+    if (v.video && v.desde && Date.now() < Date.parse(v.desde)) v = { ...v, video: null };
     const b = document.createElement("button");
     b.className = "pix pantalla" + (v.video ? "" : " proximo");
     b.dataset.tema = v.tema;
