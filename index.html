@@ -1,0 +1,1187 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pixelogic0 · Ciencia en pixel art</title>
+<meta name="description" content="Vídeos de ciencia en pixel art: una pregunta, una cifra exacta y dos fuentes oficiales. Y EL CARTUCHO, el manual para hacer los tuyos.">
+<link rel="canonical" href="https://pixelogic0.github.io/">
+<!-- Vista previa al compartir (Facebook, Instagram, WhatsApp, X). Si cambia la dirección de la web, cambiar las tres URL de aquí -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="pixelogic0">
+<meta property="og:title" content="pixelogic0 · La ciencia, explicada píxel a píxel">
+<meta property="og:description" content="Vídeos de ciencia en pixel art con una cifra exacta y su fuente oficial. Y EL CARTUCHO, el manual para hacer los tuyos.">
+<meta property="og:url" content="https://pixelogic0.github.io/">
+<meta property="og:image" content="https://pixelogic0.github.io/media/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="pixelogic0: ciencia en pixel art y la portada del manual EL CARTUCHO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="icon" href="media/favicon.png">
+<link rel="apple-touch-icon" href="media/logo.png">
+<link rel="stylesheet" href="fuentes/fuentes.css">
+<style>
+/* pixelogic0 · landing en pixel art. Todo se escala a múltiplos de 4 px. */
+.bab {
+  --noche: #0b0d1a;
+  --noche2: #10142b;
+  --tinta: #141833;
+  --borde: #2b2f55;
+  --borde2: #3b4175;
+  --nieve: #f4f1ff;
+  --gris: #a9addb;
+  --verde: #5cff9a;
+  --verde2: #2fd47a;
+  --violeta: #9b7bff;
+  --ambar: #ffb627;
+  --ambar2: #a86a00;
+  --rojo: #ff5c6c;
+  --amarillo: #ffe066;
+  --px: 4px;
+  --titulo: "Pixelify Sans", monospace;
+  --etiqueta: "Silkscreen", monospace;
+  --texto: "VT323", monospace;
+  background: var(--noche);
+  color: var(--nieve);
+  font: 400 22px/1.3 var(--texto);
+  -webkit-font-smoothing: none;
+  overflow-x: clip;
+}
+.bab *, .bab *::before, .bab *::after { box-sizing: border-box; }
+.bab img, .bab video, .bab canvas { display: block; max-width: 100%; image-rendering: pixelated; }
+.bab a { color: inherit; }
+.bab h1, .bab h2, .bab h3 { font-family: var(--titulo); font-weight: 700; margin: 0; line-height: 1.02; }
+.bab p { margin: 0 0 .7em; }
+.bab .envoltura { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.bab .etq { font: 400 13px/1.2 var(--etiqueta); letter-spacing: .12em; text-transform: uppercase; }
+.bab :focus-visible { outline: 4px solid var(--ambar); outline-offset: 4px; }
+
+/* Marco pixel: bordes de 4 px con esquinas recortadas (sin border-radius) */
+.bab .pix {
+  position: relative;
+  background: var(--tinta);
+  box-shadow:
+    0 calc(-1 * var(--px)) 0 0 var(--b, var(--borde)),
+    0 var(--px) 0 0 var(--b, var(--borde)),
+    calc(-1 * var(--px)) 0 0 0 var(--b, var(--borde)),
+    var(--px) 0 0 0 var(--b, var(--borde)),
+    calc(2 * var(--px)) calc(2 * var(--px)) 0 0 var(--sombra, rgba(0,0,0,.45));
+  margin: var(--px);
+}
+
+/* Botones */
+.bab .boton {
+  --b: #000;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px 13px;
+  font: 400 15px/1 var(--etiqueta); letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+  background: var(--ambar); color: #2b1d00;
+  box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b), inset -4px -4px 0 0 var(--ambar2), 8px 8px 0 0 rgba(0,0,0,.5);
+  margin: 4px; border: 0; cursor: pointer;
+  transition: transform .08s steps(1);
+}
+.bab .boton:hover { background: #ffc85a; }
+.bab .boton:active { transform: translate(4px, 4px); box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b), inset 4px 4px 0 0 var(--ambar2); }
+.bab .boton.verde { background: var(--verde); color: #04140b; box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b), inset -4px -4px 0 0 var(--verde2), 8px 8px 0 0 rgba(0,0,0,.5); }
+.bab .boton.verde:hover { background: #8dffbb; }
+.bab .boton.fantasma { background: var(--tinta); color: var(--nieve); --b: var(--borde2); box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b), 8px 8px 0 0 rgba(0,0,0,.4); }
+.bab .boton.fantasma:hover { background: var(--borde); }
+.bab .flecha { display: inline-block; width: 12px; height: 12px; background: currentColor; clip-path: polygon(0 0, 33% 0, 33% 17%, 67% 17%, 67% 33%, 100% 33%, 100% 67%, 67% 67%, 67% 83%, 33% 83%, 33% 100%, 0 100%); }
+
+/* ---------- Barra superior ---------- */
+.bab .barra { position: sticky; top: 0; z-index: 20; background: rgba(11,13,26,.92); border-bottom: 4px solid var(--borde); }
+.bab .barra .envoltura { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.bab .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 700 22px/1 var(--titulo); letter-spacing: .02em; }
+.bab .logo img { width: 36px; height: 36px; }
+.bab .cero { color: var(--verde); }
+.bab .menu { display: flex; gap: 22px; }
+.bab .menu a { font: 400 12px/1 var(--etiqueta); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--gris); }
+.bab .menu a:hover { color: var(--verde); }
+.bab .barra .boton { padding: 10px 14px 9px; font-size: 12px; }
+
+/* ---------- Portada (bento) ---------- */
+.bab .portada { position: relative; padding: 36px 0 56px; isolation: isolate; }
+.bab .cielo { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; opacity: .9; }
+.bab .portada::after { content: ""; position: absolute; inset: auto 0 0; height: 160px; z-index: -1; background: linear-gradient(transparent, var(--noche)); }
+.bab .bento { display: grid; grid-template-columns: 1fr 1.7fr 1fr; gap: 20px; align-items: start; }
+.bab .pila { display: grid; gap: 20px; }
+.bab .tarjeta-titulo { --b: var(--amarillo); --sombra: rgba(255,224,102,.18); background: #0b0d1a; color: var(--nieve); padding: 30px 32px 30px; }
+.bab .tarjeta-titulo .marca { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.bab .tarjeta-titulo .marca img { width: 84px; height: 84px; flex: none; }
+.bab .tarjeta-titulo .etq { color: var(--amarillo); }
+.bab .tarjeta-titulo h1 { font-size: clamp(40px, 5vw, 66px); white-space: nowrap; color: #f4f1ff; text-shadow: 4px 4px 0 #2b2f55; }
+.bab .tarjeta-titulo .lema { font: 500 clamp(20px, 2.2vw, 26px)/1.25 var(--titulo); color: var(--amarillo); margin: 18px 0 14px; }
+.bab .tarjeta-titulo p.txt { font-size: 23px; color: var(--gris); max-width: 36ch; }
+.bab .tarjeta-titulo .acciones { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 18px; }
+.bab .saltos { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 22px; }
+.bab .saltos a { font: 400 12px/1 var(--etiqueta); text-transform: uppercase; letter-spacing: .08em; color: var(--gris); }
+.bab .saltos a:hover { color: var(--amarillo); }
+
+.bab .cifra { padding: 20px 20px 16px; }
+.bab .cifra .num { font: 700 clamp(40px, 4.4vw, 56px)/1 var(--titulo); color: var(--verde); margin-bottom: 8px; }
+.bab .cifra .num.violeta { color: var(--violeta); }
+.bab .cifra .num.ambar { color: var(--ambar); }
+.bab .cifra p { color: var(--gris); font-size: 21px; margin: 0; }
+
+/* Pantallas (vídeos verticales) */
+.bab .pantalla { padding: 0; overflow: hidden; cursor: pointer; text-align: left; border: 0; color: inherit; font: inherit; width: calc(100% - 8px); display: block; }
+.bab .pantalla .marco { position: relative; aspect-ratio: 9 / 16; background: #05060f; overflow: hidden; }
+.bab .pantalla video, .bab .pantalla img, .bab .pantalla canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bab .pantalla .info { padding: 12px 14px 12px; background: var(--tinta); }
+.bab .pantalla .info h3 { font: 500 19px/1.15 var(--titulo); }
+.bab .pantalla .info .etq { color: var(--gris); font-size: 11px; margin-top: 6px; display: block; }
+.bab .pantalla .sello { position: absolute; bottom: 14px; left: 10px; z-index: 2; padding: 5px 8px 4px; background: var(--ambar); color: #2b1d00; font: 400 11px/1 var(--etiqueta); letter-spacing: .08em; }
+.bab .pantalla .sello.ya { background: var(--verde); color: #04140b; }
+.bab .pantalla .play { position: absolute; right: 12px; bottom: 12px; z-index: 2; width: 44px; height: 44px; background: rgba(11,13,26,.85); display: grid; place-items: center; box-shadow: 0 -4px 0 0 var(--verde), 0 4px 0 0 var(--verde), -4px 0 0 0 var(--verde), 4px 0 0 0 var(--verde); }
+.bab .pantalla .play::before { content: ""; width: 14px; height: 18px; background: var(--verde); clip-path: polygon(0 0, 50% 0, 50% 22%, 100% 22%, 100% 78%, 50% 78%, 50% 100%, 0 100%); }
+.bab .pantalla:hover .info h3 { color: var(--verde); }
+.bab .pantalla.proximo { cursor: default; }
+.bab .pantalla.proximo .play { display: none; }
+
+/* ---------- Secciones ---------- */
+.bab section.bloque { padding: 72px 0; position: relative; }
+.bab .cabecera { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px 32px; margin-bottom: 32px; }
+.bab .cabecera .etq { color: var(--verde); margin-bottom: 12px; }
+.bab .cabecera h2 { font-size: clamp(38px, 5vw, 60px); }
+.bab .cabecera p { color: var(--gris); max-width: 48ch; margin: 0; }
+.bab .montes { height: 80px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 20' shape-rendering='crispEdges'%3E%3Cpath fill='%23161b42' d='M0 14h4v-1h3v-2h4v-2h5V7h4V5h3v2h4v2h3v2h4V8h4V6h3v2h4v3h4v2h4v1h4v6H0z'/%3E%3Cpath fill='%2310142b' d='M0 17h5v-2h5v-2h4v-1h4v-2h4v2h4v2h5v-3h4v-2h4v2h4v2h5v2h5v1h3v4H0z'/%3E%3Cpath fill='%23c9d5f5' d='M20 5h3v1h-3zM44 6h3v1h-3z'/%3E%3C/svg%3E") 0 100% / 256px 80px repeat-x; image-rendering: pixelated; }
+.bab .suelo { height: 4px; background: var(--verde); opacity: .5; }
+
+/* Filtros */
+.bab .filtros { display: flex; flex-wrap: wrap; gap: 10px 12px; }
+.bab .chip { --b: var(--borde2); padding: 9px 13px 8px; font: 400 12px/1 var(--etiqueta); letter-spacing: .08em; text-transform: uppercase; background: var(--tinta); color: var(--gris); border: 0; cursor: pointer; box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b); margin: 4px; }
+.bab .chip[aria-pressed="true"] { background: var(--verde); color: #04140b; --b: #000; }
+.bab .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 22px; }
+.bab .nota { color: var(--gris); font-size: 19px; margin-top: 22px; }
+
+/* Por qué */
+.bab .razones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.bab .razon { padding: 22px 20px 16px; }
+.bab .razon .icono { width: 48px; height: 48px; margin-bottom: 14px; }
+.bab .razon h3 { font-size: 24px; margin-bottom: 10px; color: var(--nieve); }
+.bab .razon p { color: var(--gris); font-size: 21px; }
+.bab .lema-grande { margin-top: 44px; text-align: center; font: 500 clamp(22px, 2.6vw, 32px)/1.3 var(--titulo); color: var(--nieve); }
+.bab .lema-grande b { color: var(--verde); font-weight: 700; }
+
+/* Mapa del mundo (cómo se hacen) */
+.bab .mapa { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; position: relative; }
+.bab .mapa::before { content: ""; position: absolute; left: 6%; right: 6%; top: 38px; height: 8px; background: repeating-linear-gradient(90deg, var(--ambar) 0 12px, transparent 12px 24px); z-index: 0; }
+.bab .casilla { position: relative; z-index: 1; text-align: center; }
+.bab .casilla .nodo { --b: #000; width: 84px; height: 84px; margin: 0 auto 18px; display: grid; place-items: center; background: var(--tinta); font: 700 34px/1 var(--titulo); color: var(--ambar); box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b), inset -6px -6px 0 0 var(--borde), 8px 8px 0 0 rgba(0,0,0,.5); }
+.bab .casilla:nth-child(odd) .nodo { color: var(--verde); }
+.bab .casilla h3 { font-size: 22px; margin-bottom: 8px; }
+.bab .casilla p { color: var(--gris); font-size: 20px; }
+
+/* Demo */
+.bab .demo { display: grid; grid-template-columns: minmax(240px, 360px) 1fr; gap: 40px; align-items: center; }
+.bab .demo .movil { padding: 14px; background: #05060f; --b: var(--borde2); }
+.bab .demo canvas { width: 100%; aspect-ratio: 9 / 16; background: #000; }
+.bab .control { margin-bottom: 26px; }
+.bab .control label, .bab .control .etq { display: block; color: var(--verde); margin-bottom: 12px; }
+.bab .campo { --b: var(--borde2); width: calc(100% - 8px); margin: 4px; padding: 14px 16px 12px; background: var(--noche2); color: var(--nieve); border: 0; font: 400 26px/1.1 var(--texto); box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b); }
+.bab .campo::placeholder { color: #6b6f9c; }
+.bab .demo .ayuda { color: var(--gris); font-size: 20px; margin-top: 10px; }
+
+/* Producto */
+.bab .producto { display: grid; grid-template-columns: minmax(260px, 420px) 1fr; gap: 56px; align-items: start; }
+.bab .cartucho { position: relative; width: min(100%, 380px); margin: 12px auto 0; aspect-ratio: 5 / 6; background: #7a7d98; clip-path: polygon(0 6%, 4% 6%, 4% 0, 96% 0, 96% 6%, 100% 6%, 100% 100%, 0 100%); box-shadow: inset -12px -12px 0 0 #565970, inset 12px 12px 0 0 #9a9db6; }
+.bab .cartucho::before { content: ""; position: absolute; left: 14%; right: 14%; top: 4%; height: 7%; background: repeating-linear-gradient(90deg, #565970 0 8px, transparent 8px 20px); }
+.bab .cartucho .etiqueta { position: absolute; left: 10%; right: 10%; top: 16%; bottom: 10%; background: var(--noche); box-shadow: 0 0 0 6px #2b2d3d; overflow: hidden; }
+.bab .cartucho .etiqueta img { width: 100%; height: 64%; object-fit: cover; object-position: 50% 30%; }
+.bab .cartucho .etiqueta .rot { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 12px 12px; background: #dfe6fb; color: var(--tinta); text-align: center; }
+.bab .cartucho .etiqueta .rot b { display: block; font: 700 clamp(24px, 3vw, 34px)/1 var(--titulo); }
+.bab .cartucho .etiqueta .rot span { font: 400 10px/1.3 var(--etiqueta); letter-spacing: .06em; }
+.bab .precio-caja { margin-top: 34px; padding: 22px 22px 18px; text-align: center; }
+.bab .precio { font: 400 88px/.8 var(--texto); color: var(--ambar); text-shadow: 4px 4px 0 var(--ambar2); }
+.bab .precio-caja .etq { color: var(--gris); margin: 8px 0 18px; display: block; }
+.bab .precio-caja .boton { width: calc(100% - 8px); justify-content: center; font-size: 16px; padding: 18px 16px 17px; }
+.bab .precio-caja .seguro { color: var(--gris); font-size: 18px; margin-top: 14px; }
+.bab .consiento { position: relative; display: flex; gap: 14px; align-items: flex-start; text-align: left; margin: 0 4px 18px; font-size: 18px; line-height: 1.15; color: var(--gris); cursor: pointer; }
+.bab .consiento input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.bab .consiento .casilla { flex: none; position: relative; width: 22px; height: 22px; margin: 3px 0 0 3px; background: var(--noche); box-shadow: 0 -3px 0 0 var(--gris), 0 3px 0 0 var(--gris), -3px 0 0 0 var(--gris), 3px 0 0 0 var(--gris); }
+.bab .consiento input:checked + .casilla { background: var(--verde); box-shadow: 0 -3px 0 0 #000, 0 3px 0 0 #000, -3px 0 0 0 #000, 3px 0 0 0 #000; }
+.bab .consiento input:checked + .casilla::after { content: ""; position: absolute; left: 3px; top: 3px; width: 2px; height: 2px; color: #04140b; box-shadow: 0 8px, 2px 10px, 4px 12px, 6px 10px, 8px 8px, 10px 6px, 12px 4px, 14px 2px, 0 10px, 4px 14px, 6px 12px; }
+.bab .consiento input:focus-visible + .casilla { outline: 4px solid var(--ambar); outline-offset: 5px; }
+.bab .consiento a { color: var(--nieve); }
+.bab .boton[aria-disabled="true"] { filter: saturate(.35) brightness(.8); }
+.bab .aviso-compra { color: var(--ambar); font-size: 19px; margin: 12px 0 0; }
+
+.bab .ficha h2 { font-size: clamp(40px, 5vw, 64px); margin-bottom: 16px; }
+.bab .ficha .entrada { font-size: 25px; color: var(--nieve); max-width: 52ch; }
+.bab .inventario { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 28px 0 36px; }
+.bab .objeto { display: flex; gap: 14px; align-items: start; padding: 14px 14px 10px; }
+.bab .objeto svg { flex: none; width: 40px; height: 40px; }
+.bab .objeto b { display: block; font: 500 19px/1.15 var(--titulo); margin-bottom: 4px; }
+.bab .objeto span { color: var(--gris); font-size: 19px; line-height: 1.2; display: block; }
+.bab .niveles { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 0; }
+.bab .niveles li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 12px 0 10px; border-bottom: 4px dotted var(--borde); }
+.bab .niveles li .etq { color: var(--verde); padding-top: 5px; }
+.bab .niveles li b { font: 500 21px/1.1 var(--titulo); display: block; }
+.bab .niveles li span { color: var(--gris); font-size: 20px; }
+.bab .niveles li.sel { background: linear-gradient(90deg, rgba(92,255,154,.08), transparent); }
+.bab .niveles li.sel b::before { content: "▶ "; color: var(--ambar); }
+.bab .requisitos { padding: 18px 20px 12px; --b: var(--ambar2); background: #1b1608; }
+.bab .requisitos .etq { color: var(--ambar); display: block; margin-bottom: 10px; }
+.bab .requisitos p { color: #e9dcc0; font-size: 20px; }
+
+/* Leyenda del cartucho */
+.bab .leyenda { display: grid; grid-template-columns: 1.2fr 1fr; gap: 44px; align-items: start; }
+.bab .leyenda .escena { position: sticky; top: 92px; }
+.bab .habitacion { padding: 12px; background: #05060f; --b: var(--borde2); }
+.bab .habitacion canvas { width: 100%; aspect-ratio: 200 / 128; background: #0f0b26; }
+.bab .habitacion .pie-hab { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; padding-top: 12px; }
+.bab .habitacion .pie-hab .etq { color: var(--gris); font-size: 11px; }
+.bab .habitacion .pie-hab .etq b { color: var(--verde); font-weight: 400; }
+.bab .leyenda .remate { margin-top: 26px; font: 500 clamp(20px, 2.2vw, 26px)/1.3 var(--titulo); color: var(--nieve); }
+.bab .leyenda .remate b { color: var(--ambar); font-weight: 700; }
+.bab .cronica { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; position: relative; }
+.bab .cronica::before { content: ""; position: absolute; left: 36px; top: 30px; bottom: 30px; width: 4px; background: repeating-linear-gradient(180deg, var(--ambar) 0 8px, transparent 8px 16px); }
+.bab .hito { position: relative; display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: start; }
+.bab .hito .icono-hito { --b: #000; width: 64px; height: 64px; margin: 6px; display: grid; place-items: center; background: var(--tinta); box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b), inset -6px -6px 0 0 var(--borde), 8px 8px 0 0 rgba(0,0,0,.5); }
+.bab .hito .icono-hito svg { width: 40px; height: 40px; }
+.bab .hito .texto-hito { padding: 14px 18px 8px; }
+.bab .hito .anyo { display: block; font: 400 36px/.9 var(--texto); color: var(--ambar); text-shadow: 3px 3px 0 var(--ambar2); margin-bottom: 8px; }
+.bab .hito h3 { font-size: 23px; margin-bottom: 8px; }
+.bab .hito p { color: var(--gris); font-size: 20px; }
+.bab .hito.hoy .texto-hito { --b: var(--verde); --sombra: rgba(92,255,154,.16); }
+.bab .hito.hoy .anyo { color: var(--verde); text-shadow: 3px 3px 0 #13693a; }
+.bab .fuentes-ley { color: #7c80b0; font-size: 17px; margin-top: 18px; }
+
+/* Preguntas: cajas de diálogo */
+.bab .preguntas { display: grid; gap: 18px; max-width: 900px; }
+.bab details.dialogo { --b: var(--nieve); background: var(--noche2); padding: 0; }
+.bab details.dialogo summary { list-style: none; cursor: pointer; padding: 18px 54px 16px 20px; font: 500 22px/1.2 var(--titulo); position: relative; }
+.bab details.dialogo summary::-webkit-details-marker { display: none; }
+.bab details.dialogo summary::after { content: ""; position: absolute; right: 22px; top: 50%; width: 14px; height: 10px; margin-top: -5px; background: var(--verde); clip-path: polygon(0 0, 100% 0, 100% 40%, 71% 40%, 71% 70%, 57% 70%, 57% 100%, 43% 100%, 43% 70%, 29% 70%, 29% 40%, 0 40%); }
+.bab details.dialogo[open] summary::after { transform: rotate(180deg); }
+.bab details.dialogo .resp { padding: 0 20px 14px; color: var(--gris); font-size: 21px; }
+.bab details.dialogo .resp b { color: var(--nieve); font-weight: 400; }
+
+/* Cierre y pie */
+.bab .final { text-align: center; padding: 80px 0 96px; }
+.bab .final h2 { font-size: clamp(40px, 6vw, 76px); margin-bottom: 18px; }
+.bab .final p { color: var(--gris); max-width: 46ch; margin: 0 auto 28px; }
+.bab .final .acciones { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+.bab .insert { display: inline-block; margin-top: 30px; font: 400 13px/1 var(--etiqueta); letter-spacing: .14em; color: var(--ambar); animation: parpadeo 1.6s steps(1) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+.bab footer.pie { border-top: 4px solid var(--borde); padding: 28px 0 40px; color: var(--gris); font-size: 19px; }
+.bab footer.pie .envoltura { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 28px; }
+.bab footer.pie nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.bab footer.pie a { color: var(--gris); }
+.bab footer.pie a:hover { color: var(--verde); }
+
+/* Visor de vídeo */
+.bab dialog.visor { border: 0; padding: 0; background: transparent; max-width: min(420px, 92vw); width: 100%; color: var(--nieve); }
+.bab dialog.visor::backdrop { background: rgba(5,6,15,.88); }
+.bab dialog.visor .pix { padding: 12px; background: #05060f; --b: var(--verde); }
+.bab dialog.visor video { width: 100%; aspect-ratio: 9 / 16; background: #000; }
+.bab dialog.visor .pie-visor { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 12px; }
+.bab dialog.visor h3 { font-size: 20px; }
+.bab dialog.visor .cerrar { padding: 9px 12px 8px; font-size: 12px; }
+
+/* ---------- Móvil ---------- */
+@media (max-width: 980px) {
+  .bab .menu { display: none; }
+  .bab .bento { grid-template-columns: 1fr 1fr; }
+  .bab .bento .tarjeta-titulo { grid-column: 1 / -1; order: -1; }
+  .bab .razones { grid-template-columns: repeat(2, 1fr); }
+  .bab .mapa { grid-template-columns: 1fr; gap: 26px; }
+  .bab .mapa::before { left: 46px; right: auto; top: 20px; bottom: 20px; width: 8px; height: auto; background: repeating-linear-gradient(180deg, var(--ambar) 0 12px, transparent 12px 24px); }
+  .bab .casilla { display: grid; grid-template-columns: 92px 1fr; gap: 0 18px; text-align: left; align-items: center; }
+  .bab .casilla .nodo { margin: 0; grid-row: span 2; }
+  .bab .demo, .bab .producto, .bab .leyenda { grid-template-columns: 1fr; }
+  .bab .leyenda .escena { position: static; }
+  .bab .demo .movil { max-width: 340px; margin-inline: auto; }
+}
+@media (max-width: 600px) {
+  .bab { font-size: 21px; }
+  .bab .tarjeta-titulo .marca img { width: 64px; height: 64px; }
+  .bab .barra .boton { display: none; }
+  .bab .tarjeta-titulo { padding: 26px 20px 22px; }
+  .bab .razones, .bab .inventario { grid-template-columns: 1fr; }
+  .bab .rejilla { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .bab .pantalla .info h3 { font-size: 16px; }
+  .bab .niveles li { grid-template-columns: 1fr; gap: 4px; }
+  .bab section.bloque { padding: 56px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bab .insert { animation: none; }
+  .bab .boton { transition: none; }
+}
+</style>
+</head>
+<body style="margin:0;background:#0b0d1a">
+<div class="bab" id="bab">
+
+<header class="barra">
+  <div class="envoltura">
+    <a class="logo" href="#inicio" aria-label="pixelogic0, inicio">
+      <img data-media="logo" alt="" width="36" height="36">
+      <span>pixelogic<span class="cero">0</span></span>
+    </a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#videos">Vídeos</a>
+      <a href="#porque">Por qué</a>
+      <a href="#como">Cómo se hacen</a>
+      <a href="#leyenda">La leyenda</a>
+      <a href="#manual">El manual</a>
+    </nav>
+    <a class="boton verde" data-enlace="instagram" href="#">Seguir</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <!-- PORTADA -->
+  <section class="portada">
+    <canvas class="cielo" id="cielo" aria-hidden="true"></canvas>
+    <div class="envoltura">
+      <div class="bento">
+        <div class="pila">
+          <div class="pix cifra"><div class="num">1</div><p>cifra exacta por vídeo, con su fuente oficial a la vista</p></div>
+          <div data-pantalla="0"></div>
+        </div>
+        <div class="pix tarjeta-titulo">
+          <div class="marca"><img data-media="logo" alt="Logo de pixelogic0: una bombilla de píxeles"><p class="etq">Ciencia en pixel art · en español</p></div>
+          <h1>PIXELOGIC<span class="cero">0</span></h1>
+          <p class="lema">La ciencia, explicada píxel a píxel.</p>
+          <p class="txt">Convertimos la ciencia que tienes delante (el cielo, tu cocina, tu cuerpo) en vídeos de menos de un minuto, con una sola idea y una cifra que puedes repetir en la cena.</p>
+          <div class="acciones">
+            <a class="boton verde" data-enlace="instagram" href="#">Síguenos en Instagram <span class="flecha"></span></a>
+          </div>
+          <nav class="saltos" aria-label="Atajos">
+            <a href="#videos">Los vídeos</a><a href="#porque">Por qué</a><a href="#como">Cómo se hacen</a><a href="#manual">Haz los tuyos</a>
+          </nav>
+        </div>
+        <div class="pila">
+          <div data-pantalla="1"></div>
+          <div class="pix cifra"><div class="num violeta">0</div><p>canciones con derechos: la música 8-bit la componemos con código</p></div>
+        </div>
+      </div>
+      <div id="cifras-reales"></div>
+    </div>
+  </section>
+
+  <!-- VÍDEOS -->
+  <section class="bloque" id="videos">
+    <div class="envoltura">
+      <div class="cabecera">
+        <div>
+          <p class="etq">Los vídeos</p>
+          <h2>Pantallas encendidas</h2>
+        </div>
+        <div class="filtros" role="group" aria-label="Filtrar por tema">
+          <button class="chip" aria-pressed="true" data-tema="todos">Todos</button>
+          <button class="chip" aria-pressed="false" data-tema="espacio">Espacio</button>
+          <button class="chip" aria-pressed="false" data-tema="alrededor">A tu alrededor</button>
+          <button class="chip" aria-pressed="false" data-tema="cuerpo">Tu cuerpo</button>
+        </div>
+      </div>
+      <div class="rejilla" id="rejilla"></div>
+      <p class="nota">Toca una pantalla para verla. Las que pone «Próximamente» están en el taller.</p>
+    </div>
+  </section>
+
+  <div class="montes" aria-hidden="true"></div>
+
+  <!-- POR QUÉ -->
+  <section class="bloque" id="porque" style="background:var(--noche2)">
+    <div class="envoltura">
+      <div class="cabecera">
+        <div>
+          <p class="etq">Por qué los hacemos</p>
+          <h2>Ciencia sin peaje</h2>
+        </div>
+        <p>La ciencia no debería pedirte un título, un laboratorio ni una hora libre. Cabe en un minuto y en un móvil, si se cuenta bien.</p>
+      </div>
+      <div class="razones">
+        <article class="pix razon">
+          <svg class="icono" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#5cff9a" d="M5 1h2v1h1v1h1v3H8v1H7v2H5V7H4V6H3V3h1V2h1z"/><path fill="#0b0d1a" d="M5 3h1v1H5zM6 4h1v1H6z"/><path fill="#a9addb" d="M5 9h2v1H5zM5 10h2v1H5z"/></svg>
+          <h3>Para cualquiera</h3>
+          <p>Sin jerga y sin nada que saber antes. Si puedes ver un vídeo de cuarenta segundos, puedes seguirlo.</p>
+        </article>
+        <article class="pix razon">
+          <svg class="icono" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#ffb627" d="M2 2h3v8H2zM7 2h3v8H7z"/><path fill="#0b0d1a" d="M3 4h1v4H3zM8 4h1v4H8z"/><path fill="#5cff9a" d="M5 5h2v2H5z"/></svg>
+          <h3>Una cifra que se queda</h3>
+          <p>Cada vídeo gira en torno a un número exacto. Va con dos fuentes oficiales; si no las tiene, no sale.</p>
+        </article>
+        <article class="pix razon">
+          <svg class="icono" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#9b7bff" d="M4 1h4v1h1v1h1v4H9v1H8v1H4V8H3V7H2V3h1V2h1z"/><path fill="#f4f1ff" d="M4 3h1v1H4zM5 2h1v1H5z"/><path fill="#5cff9a" d="M1 10h10v1H1z"/></svg>
+          <h3>Lo que ya tienes delante</h3>
+          <p>La aurora, el azul del cielo, el latido que no oyes. La ciencia ya está a tu alrededor: nosotros la hacemos visible.</p>
+        </article>
+        <article class="pix razon">
+          <svg class="icono" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#f4f1ff" d="M6 1h1v2H6zM6 9h1v2H6zM1 6h2v1H1zM9 6h2v1H9z"/><path fill="#ffb627" d="M5 4h3v1h1v3H8v1H5V8H4V5h1z"/><path fill="#5cff9a" d="M2 2h1v1H2zM9 2h1v1H9zM2 9h1v1H2zM9 9h1v1H9z"/></svg>
+          <h3>Píxeles que se recuerdan</h3>
+          <p>El pixel art es cálido y tranquilo. Una estrella, una célula o un átomo se vuelven personajes que no olvidas.</p>
+        </article>
+      </div>
+      <p class="lema-grande">Cada cifra, comprobada. Cada píxel, puesto a propósito. <b>Si sale en pantalla, es verdad.</b></p>
+    </div>
+  </section>
+
+  <!-- CÓMO SE HACEN -->
+  <section class="bloque" id="como">
+    <div class="envoltura">
+      <div class="cabecera">
+        <div>
+          <p class="etq">Cómo se hacen</p>
+          <h2>Cinco niveles por vídeo</h2>
+        </div>
+        <p>Un estudio pequeño, de la primera pregunta al último píxel. Así recorre cada vídeo el mapa antes de llegar a tu pantalla.</p>
+      </div>
+      <ol class="mapa" style="list-style:none;padding:0;margin:0">
+        <li class="casilla"><div class="nodo">1</div><h3>La pregunta</h3><p>Algo que te hayas preguntado alguna vez, en una frase.</p></li>
+        <li class="casilla"><div class="nodo">2</div><h3>Las fuentes</h3><p>Dos fuentes oficiales por dato y una cifra exacta como protagonista.</p></li>
+        <li class="casilla"><div class="nodo">3</div><h3>Los píxeles</h3><p>Un mundo pequeño de píxeles, pintado con código y ampliado sin suavizar.</p></li>
+        <li class="casilla"><div class="nodo">4</div><h3>El sonido</h3><p>Música y efectos 8-bit propios, que caen justo en cada acción.</p></li>
+        <li class="casilla"><div class="nodo">5</div><h3>La revisión</h3><p>Tamaño, volumen, zona segura, tildes y destellos. Luego, a publicar.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="bloque" id="demo" style="background:var(--noche2)">
+    <div class="envoltura">
+      <div class="demo">
+        <div class="pix movil"><canvas id="demo-lienzo" width="270" height="480" aria-label="Vista previa en pixel art de tu idea"></canvas></div>
+        <div>
+          <p class="etq" style="color:var(--verde);margin-bottom:12px">Pruébalo con tu idea</p>
+          <h2 style="font-size:clamp(34px,4.4vw,54px);margin-bottom:18px">Escribe una pregunta y mírala en píxeles</h2>
+          <p style="color:var(--gris);margin-bottom:28px">Así empieza cada vídeo: una pregunta que se lee en la pantalla de un móvil en menos de dos segundos. Cambia el mundo y los colores; el lienzo se repinta al momento, igual que en tu estudio.</p>
+          <div class="control">
+            <label class="etq" for="demo-texto">Tu pregunta</label>
+            <input class="campo" id="demo-texto" maxlength="70" value="¿Por qué el cielo es azul?" placeholder="¿Cuánto pesa una nube?">
+          </div>
+          <div class="control">
+            <span class="etq">El mundo</span>
+            <div class="filtros" role="group" aria-label="Escena" id="demo-escenas">
+              <button class="chip" aria-pressed="true" data-escena="cielo">Cielo</button>
+              <button class="chip" aria-pressed="false" data-escena="planeta">Planeta</button>
+              <button class="chip" aria-pressed="false" data-escena="atomo">Átomo</button>
+            </div>
+          </div>
+          <div class="control">
+            <span class="etq">Los colores</span>
+            <div class="filtros" role="group" aria-label="Paleta" id="demo-paletas">
+              <button class="chip" aria-pressed="true" data-paleta="aurora">Aurora</button>
+              <button class="chip" aria-pressed="false" data-paleta="ocaso">Ocaso</button>
+              <button class="chip" aria-pressed="false" data-paleta="musgo">Musgo</button>
+              <button class="chip" aria-pressed="false" data-paleta="papel">Papel</button>
+            </div>
+          </div>
+          <p class="ayuda">El manual te enseña a construir tu propio mundo, tu paleta y tu personaje. Este es solo un aperitivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="montes" aria-hidden="true" style="background-color:var(--noche2)"></div>
+
+  <!-- LEYENDA DEL CARTUCHO -->
+  <section class="bloque" id="leyenda">
+    <div class="envoltura">
+      <div class="cabecera">
+        <div>
+          <p class="etq">La leyenda</p>
+          <h2>¿Por qué «cartucho»?</h2>
+        </div>
+        <p>Antes de las descargas, un videojuego era algo que se podía tocar: una pieza de plástico con el juego entero dentro. La metías en la consola, encendías y arrancaba al momento.</p>
+      </div>
+      <div class="leyenda">
+        <div class="escena">
+          <div class="pix habitacion">
+            <canvas id="habitacion" width="200" height="128" role="img" aria-label="Habitación de noche en pixel art: un cartucho entra en la consola y la tele se enciende con PULSA START"></canvas>
+            <div class="pie-hab"><span class="etq"><b>1P</b> · Insertando cartucho…</span><span class="etq">Pintado con código, píxel a píxel</span></div>
+          </div>
+          <p class="remate">Por eso nuestro manual se llama así y se juega como un videojuego: <b>niveles, jefes finales y trucos.</b></p>
+        </div>
+        <div>
+          <ol class="cronica">
+            <li class="hito">
+              <div class="icono-hito"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#8e8aac" d="M2 1h8v10H2z"/><path fill="#b8b4cf" d="M2 1h8v1H2zM2 2h1v9H2z"/><path fill="#9b7bff" d="M3 4h6v5H3z"/><path fill="#5cff9a" d="M3 4h6v1H3z"/><path fill="#ffb627" d="M3 11h1v1H3zM5 11h1v1H5zM7 11h1v1H7z"/></svg></div>
+              <div class="pix texto-hito"><span class="anyo">1976</span><h3>El juego sale de la consola</h3><p>Hasta entonces, cada máquina traía sus juegos de fábrica. La Fairchild Channel F los metió en piezas de plástico intercambiables, sus «videocarts», con el ingeniero Jerry Lawson al frente del equipo.</p></div>
+            </li>
+            <li class="hito">
+              <div class="icono-hito"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#2e2b48" d="M2 8h8v3H2z"/><path fill="#4a4675" d="M2 8h8v1H2z"/><path fill="#a9addb" d="M5 4h2v4H5z"/><path fill="#ff5c6c" d="M4 1h4v3H4z"/><path fill="#ffb3bb" d="M4 1h2v1H4z"/><path fill="#ff5c6c" d="M3 9h1v1H3z"/></svg></div>
+              <div class="pix texto-hito"><span class="anyo">1977</span><h3>Uno por juego, en la estantería</h3><p>La Atari VCS, luego llamada 2600, hizo del cartucho el estándar de las consolas de casa. Cambiar de juego era sacar uno y meter otro.</p></div>
+            </li>
+            <li class="hito">
+              <div class="icono-hito"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#cfcbe0" d="M3 0h6v12H3z"/><path fill="#9894b3" d="M8 0h1v12H8z"/><path fill="#1b192e" d="M4 1h4v4H4z"/><path fill="#5cff9a" d="M5 2h2v2H5z"/><path fill="#2e2b48" d="M4 7h1v3H4zM3 8h3v1H3z"/><path fill="#ff5c6c" d="M7 8h1v1H7zM8 7h1v1H8z"/></svg></div>
+              <div class="pix texto-hito"><span class="anyo">Años 80 y 90</span><h3>La palabra de una generación</h3><p>En España, los juegos de consola eran «cartuchos». Y casi todos aprendimos el mismo ritual: soplar los contactos cuando no arrancaba. No servía: la propia Nintendo pide no hacerlo, porque la humedad del aliento puede oxidarlos.</p></div>
+            </li>
+            <li class="hito hoy">
+              <div class="icono-hito"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#8e8aac" d="M2 1h8v10H2z"/><path fill="#b8b4cf" d="M2 1h8v1H2zM2 2h1v9H2z"/><path fill="#0b0d1a" d="M3 3h6v7H3z"/><path fill="#ffe066" d="M5 4h2v1H5zM4 5h4v2H4zM5 7h2v1H5z"/><path fill="#a9addb" d="M5 8h2v1H5z"/><path fill="#ffb627" d="M3 11h1v1H3zM5 11h1v1H5zM7 11h1v1H7z"/></svg></div>
+              <div class="pix texto-hito"><span class="anyo">Hoy</span><h3>Este cartucho</h3><p>No trae un juego: trae el estudio entero. Lo abres, pulsas start y dentro está todo lo que necesitas para tu primer vídeo: los niveles, los trucos, el kit y la música. Sin soplar.</p><p><a class="boton" href="#manual">Ver qué hay dentro <span class="flecha"></span></a></p></div>
+            </li>
+          </ol>
+          <p class="fuentes-ley">Fuentes: The Strong National Museum of Play (Jerry Lawson y la Channel F) · Centre for Computing History (Atari VCS) · atención al cliente de Nintendo (no soplar los cartuchos).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="suelo" aria-hidden="true"></div>
+
+  <!-- PRODUCTO -->
+  <section class="bloque" id="manual">
+    <div class="envoltura">
+      <div class="producto">
+        <div>
+          <div class="cartucho" aria-hidden="true">
+            <div class="etiqueta">
+              <img data-media="cartucho" alt="">
+              <div class="rot"><b>EL CARTUCHO</b><span>MANUAL DEL CREADOR · ED. 1.0</span></div>
+            </div>
+          </div>
+          <div class="pix precio-caja" id="comprar">
+            <div class="precio" data-dato="precio">29 €</div>
+            <span class="etq">Un solo pago · actualizaciones 1.x gratis</span>
+            <label class="consiento"><input type="checkbox" id="consiento"><span class="casilla" aria-hidden="true"></span><span>Quiero la descarga ya y acepto que, al empezar, pierdo el derecho de desistimiento. Lee las <a data-enlace="terminos" href="#">condiciones</a>.</span></label>
+            <a class="boton" data-enlace="comprar" data-compra href="#">Insertar cartucho <span class="flecha"></span></a>
+            <p class="aviso-compra" id="aviso-compra" role="status" hidden>Marca la casilla para continuar.</p>
+            <p class="seguro">Descarga inmediata en PDF + pack de extras.</p>
+          </div>
+        </div>
+        <div class="ficha">
+          <p class="etq" style="color:var(--verde);margin-bottom:12px">Haz los tuyos</p>
+          <h2>EL CARTUCHO</h2>
+          <p class="entrada">El manual con el que hacemos estos vídeos: de un ordenador vacío a tu primer vídeo de ciencia en pixel art, con tu propio estilo, tu personaje y tu música. Tu primer vídeo, en un día largo.</p>
+          <div class="inventario">
+            <div class="pix objeto">
+              <svg viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><path fill="#f4f1ff" d="M2 1h5l1 1v7H2z"/><path fill="#5cff9a" d="M3 3h4v1H3zM3 5h4v1H3zM3 7h3v1H3z"/></svg>
+              <div><b>Manual en PDF</b><span>105 páginas A5 en 9 niveles y extras, con el ejemplo completo de nuestro vídeo de la aurora.</span></div>
+            </div>
+            <div class="pix objeto">
+              <svg viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><path fill="#ffb627" d="M1 3h8v6H1z"/><path fill="#a86a00" d="M1 3h8v1H1zM4 4h2v2H4z"/><path fill="#ffb627" d="M3 1h4v2H3z"/></svg>
+              <div><b>Kit de arranque</b><span>El lienzo pixel para Remotion, los rótulos letra a letra y un sintetizador chiptune.</span></div>
+            </div>
+            <div class="pix objeto">
+              <svg viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><path fill="#9b7bff" d="M1 2h8v6H1z"/><path fill="#0b0d1a" d="M2 3h6v4H2z"/><path fill="#5cff9a" d="M3 4h1v1H3zM5 4h2v1H5zM3 5h3v1H3z"/></svg>
+              <div><b>Prompts listos</b><span>Cada paso con su prompt para copiar en Claude Code y lo que debes ver al terminar.</span></div>
+            </div>
+            <div class="pix objeto">
+              <svg viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><path fill="#f4f1ff" d="M2 1h6v8H2z"/><path fill="#5cff9a" d="M3 3h1v1H3zM3 5h1v1H3zM3 7h1v1H3z"/><path fill="#a9addb" d="M5 3h2v1H5zM5 5h2v1H5zM5 7h2v1H5z"/></svg>
+              <div><b>Plantillas y listas</b><span>Guía de estilo, memoria del estudio, guion y las listas de antes de publicar.</span></div>
+            </div>
+          </div>
+          <ul class="niveles" id="niveles">
+            <li class="sel"><span class="etq">Start</span><div><b>Pulsa start</b><span>Qué vas a hacer, qué necesitas y cuánto cuesta de verdad.</span></div></li>
+            <li><span class="etq">Nivel 1</span><div><b>El equipo</b><span>De ordenador vacío a estudio que funciona, paso a paso.</span></div></li>
+            <li><span class="etq">Nivel 2</span><div><b>Tu base</b><span>Carpetas, memoria del estudio y reglas por escrito.</span></div></li>
+            <li><span class="etq">Nivel 3</span><div><b>Tu identidad</b><span>Paleta, personaje, tono y tu propia guía de estilo.</span></div></li>
+            <li><span class="etq">Nivel 4</span><div><b>La idea</b><span>Una pregunta, una cifra, dos fuentes y un gancho de dos segundos.</span></div></li>
+            <li><span class="etq">Nivel 5</span><div><b>El mundo píxel</b><span>Escenas, efectos, personaje, rótulos y cámara.</span></div></li>
+            <li><span class="etq">Nivel 6</span><div><b>Sonido 8-bit</b><span>Tu música y tus efectos, hechos con código.</span></div></li>
+            <li><span class="etq">Nivel 7</span><div><b>Control de calidad</b><span>Todo lo que se revisa antes de darle a publicar.</span></div></li>
+            <li><span class="etq">Nivel 8</span><div><b>Publicar</b><span>Portada, texto, horario y cómo leer tus primeras cifras.</span></div></li>
+            <li><span class="etq">Nivel 9</span><div><b>Costes y ética</b><span>Lo que cuesta, las licencias y lo que no se hace.</span></div></li>
+            <li><span class="etq">Extras</span><div><b>Trucos y secretos</b><span>Tu primer vídeo en un día, fallos, ideas, prompts y glosario.</span></div></li>
+          </ul>
+          <div class="pix requisitos">
+            <span class="etq">Qué necesitas</span>
+            <p>Un ordenador con Mac, Windows o Linux y un plan de pago del asistente de IA que usa el manual, Claude (desde unos 20 $ al mes). No hace falta saber dibujar ni programar: vas paso a paso y cada paso dice qué debes ver.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS -->
+  <section class="bloque" id="preguntas" style="background:var(--noche2)">
+    <div class="envoltura">
+      <div class="cabecera">
+        <div>
+          <p class="etq">Preguntas</p>
+          <h2>Antes de jugar</h2>
+        </div>
+      </div>
+      <div class="preguntas">
+        <details class="pix dialogo"><summary>¿Necesito saber dibujar o programar?</summary><div class="resp"><p>No. El manual parte de cero, desde la primera instalación. Los dibujos se hacen con código que escribe el asistente de IA siguiendo tus indicaciones; tú decides, revisas y corriges.</p></div></details>
+        <details class="pix dialogo"><summary>¿Cuánto tardo en tener mi primer vídeo?</summary><div class="resp"><p>Un día largo y concentrado desde un ordenador vacío, o un fin de semana con calma. Después, cada vídeo nuevo es cuestión de una tarde.</p></div></details>
+        <details class="pix dialogo"><summary>¿Cuánto cuesta mantenerlo?</summary><div class="resp"><p>El plan de pago de Claude, desde unos 20 $ al mes. El resto de herramientas son gratuitas para particulares y equipos pequeños, y la música la haces tú. El nivel 9 lo detalla, con sus licencias.</p></div></details>
+        <details class="pix dialogo"><summary>¿Me garantizáis visitas o seguidores?</summary><div class="resp"><p><b>No, y nadie debería.</b> El manual te da un método para hacer vídeos originales, bien hechos y con datos que aguantan una pregunta. El crecimiento depende de tus ideas, tu constancia y las propias redes.</p></div></details>
+        <details class="pix dialogo"><summary>¿Trae personajes o un estilo para copiar?</summary><div class="resp"><p>No, a propósito: si mil personas usaran el mismo personaje, nadie destacaría. Trae un kit técnico de arranque y plantillas, y un proceso para que crees tu paleta, tu personaje y tu voz.</p></div></details>
+        <details class="pix dialogo"><summary>¿Sirve solo para ciencia?</summary><div class="resp"><p>El ejemplo y el método de fuentes están pensados para divulgación científica, pero el estudio sirve para cualquier tema que se cuente en menos de un minuto: historia, curiosidades, «¿y si…?».</p></div></details>
+        <details class="pix dialogo"><summary>¿Para quién no es?</summary><div class="resp"><p>Para quien busque ingresos garantizados, canales que se publican solos, caras o voces falsas de personas reales, o bots que comenten y den «me gusta». Aquí cada vídeo lo publicas tú, con la app oficial de cada red.</p></div></details>
+        <details class="pix dialogo"><summary>¿Puedo devolverlo? ¿Tengo ayuda?</summary><div class="resp"><p>Es contenido digital de descarga inmediata: al comprar aceptas que empiece la descarga y, con ello, pierdes el derecho de desistimiento. Si los archivos no llegan o la descarga falla, escríbenos y lo arreglamos enseguida. Para dudas de un paso, escribe con tu sistema, el paso y una captura: <a data-enlace="correo" href="mailto:pixelogic0.ayuda@proton.me" data-dato="correo">pixelogic0.ayuda@proton.me</a>.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="final">
+    <div class="envoltura">
+      <h2>¿Jugamos el primer nivel?</h2>
+      <p>Las ideas ya las tienes. EL CARTUCHO te da el estudio para convertir cada una en un vídeo de ciencia en pixel art, con un estilo que es solo tuyo.</p>
+      <div class="acciones">
+        <a class="boton" href="#comprar">Comprar · <span data-dato="precio">29 €</span></a>
+        <a class="boton fantasma" data-enlace="instagram" href="#">Ver el próximo vídeo</a>
+      </div>
+      <span class="insert">INSERTA EL CARTUCHO Y PULSA START</span>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <span>© <span id="anyo">2026</span> pixelogic0 · Ciencia en pixel art</span>
+    <nav aria-label="Legal">
+      <a data-enlace="aviso" href="legal/aviso-legal.html" rel="nofollow">Aviso legal</a>
+      <a data-enlace="terminos" href="#">Condiciones</a>
+      <a data-enlace="privacidad" href="#">Privacidad</a>
+      <a data-enlace="reembolsos" href="#">Devoluciones</a>
+      <a data-enlace="instagram" href="#" data-dato="usuario">@pixelogic0</a>
+    </nav>
+  </div>
+</footer>
+
+<dialog class="visor" id="visor">
+  <div class="pix">
+    <video id="visor-video" controls playsinline></video>
+    <div class="pie-visor"><h3 id="visor-titulo"></h3><button class="boton fantasma cerrar" id="visor-cerrar">Cerrar</button></div>
+  </div>
+</dialog>
+</div>
+
+<script id="bab-config">
+/* ======================= CONFIGURACIÓN =======================
+   Lo único que hay que tocar para cambiar enlaces, precio y vídeos.
+   En Shopify este bloque lo genera la propia sección con sus ajustes. */
+window.BAB = {
+  precio: "29 €",
+  usuario: "@pixelogic0",
+  instagram: "https://www.instagram.com/pixelogic0/",
+  payhip: "ZpuA6",                // código del producto en Payhip: lo que va tras payhip.com/b/ (p. ej. "AbC12"). Con él, el botón abre el pago de Payhip
+  comprar: "#comprar",            // sin Payhip: cualquier enlace de pago directo
+  correo: "pixelogic0.ayuda@proton.me",
+  terminos: "legal/condiciones.html", privacidad: "legal/privacidad.html", reembolsos: "legal/condiciones.html#devoluciones", aviso: "legal/aviso-legal.html",
+  media: "media/",                // carpeta de portadas y vídeos
+  logo: "logo.png",               // bombilla de MARCA/logo_pixelogic0_avatar.png
+  cartucho: "p2_oido.jpg",        // imagen de la etiqueta del cartucho
+  // Cifras reales de la cuenta (solo datos medidos, con fecha). Vacío = no se muestra nada.
+  cifras: [
+    // { num: "10.000", texto: "seguidores el 1 de diciembre de 2026" },
+  ],
+  // Vídeos: con `video` se pueden ver; sin él salen como «Próximamente» (con su portada o, si no hay, un dibujo).
+  videos: [
+    { titulo: "¿Hasta dónde oyes?", tema: "cuerpo", portada: "p2_oido.jpg", video: "p2_oido.mp4" },
+    { titulo: "¿Qué es una aurora?", tema: "espacio", portada: "p1_aurora.png", video: "p1_aurora.mp4" },
+    { titulo: "¿A qué distancia cayó el rayo?", tema: "alrededor", portada: "p3_trueno.jpg" },
+    { titulo: "Aguanta la respiración", tema: "cuerpo", portada: "p4_respira.jpg" },
+    { titulo: "¿Cuál es tu ojo jefe?", tema: "cuerpo", portada: "p5_ojo.jpg" },
+    { titulo: "¿Por qué odias tu voz grabada?", tema: "cuerpo", portada: "p6_voz.jpg" },
+  ],
+};
+/* ============================================================= */
+</script>
+<script id="bab-codigo">
+(() => {
+  const CONFIG = window.BAB;
+  const raiz = document.getElementById("bab");
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const media = (n) => (n && /^(https?:)?\/\//.test(n) ? n : CONFIG.media + n);
+
+  // Enlaces y datos
+  raiz.querySelectorAll("[data-enlace]").forEach((a) => {
+    const k = a.dataset.enlace;
+    const v = k === "correo" ? "mailto:" + CONFIG.correo : CONFIG[k];
+    if (v) a.href = v;
+    if (k === "instagram") { a.target = "_blank"; a.rel = "noopener"; }
+  });
+  raiz.querySelectorAll("[data-dato]").forEach((e) => { const v = CONFIG[e.dataset.dato]; if (v) e.textContent = v; });
+  raiz.querySelectorAll("img[data-media]").forEach((i) => { const v = CONFIG[i.dataset.media]; if (v) i.src = media(v); else i.hidden = true; });
+  document.getElementById("anyo").textContent = new Date().getFullYear();
+
+  // Compra: consentimiento expreso antes de pagar (contenido digital, art. 103.m TRLGDCU) y botón de Payhip
+  const casilla = document.getElementById("consiento"), avisoCompra = document.getElementById("aviso-compra");
+  const botonesCompra = raiz.querySelectorAll("[data-compra]");
+  const sincronizar = () => botonesCompra.forEach((b) => b.setAttribute("aria-disabled", String(!casilla.checked)));
+  casilla.addEventListener("change", () => { sincronizar(); if (casilla.checked) avisoCompra.hidden = true; });
+  sincronizar();
+  botonesCompra.forEach((b) => b.addEventListener("click", (e) => {
+    if (casilla.checked) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    avisoCompra.hidden = false; casilla.focus();
+  }, true));
+  if (CONFIG.payhip) {
+    botonesCompra.forEach((b) => { b.href = "https://payhip.com/b/" + CONFIG.payhip; b.classList.add("payhip-buy-button"); b.dataset.product = CONFIG.payhip; b.dataset.theme = "none"; });
+    const s = document.createElement("script"); s.src = "https://payhip.com/payhip.js"; document.head.appendChild(s);
+  }
+
+  // Cifras reales (si las hay)
+  if (CONFIG.cifras.length) {
+    const c = document.getElementById("cifras-reales");
+    c.style.cssText = "display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:20px";
+    c.innerHTML = CONFIG.cifras.map((x) => `<div class="pix cifra"><div class="num ambar">${x.num}</div><p>${x.texto}</p></div>`).join("");
+  }
+
+  /* ---------- Pintor pixel (búfer de 32 bits) ---------- */
+  const B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  const bayer = (x, y) => (B4[((y & 3) << 2) | (x & 3)] + 0.5) / 16;
+  const hex = (h) => { const n = parseInt(h.slice(1), 16); return 0xff000000 | ((n & 0xff) << 16) | (n & 0xff00) | (n >> 16); };
+  function Pintor(cv) {
+    const W = cv.width, H = cv.height, ctx = cv.getContext("2d");
+    const img = ctx.createImageData(W, H), buf = new Uint32Array(img.data.buffer);
+    const p = {
+      W, H, buf,
+      put(x, y, c) { x |= 0; y |= 0; if (x >= 0 && y >= 0 && x < W && y < H) buf[y * W + x] = c; },
+      rect(x, y, w, h, c) { for (let j = y; j < y + h; j++) for (let i = x; i < x + w; i++) p.put(i, j, c); },
+      franjas(cols, y0 = 0, y1 = H) { // cielo degradado tramado
+        const n = cols.length - 1;
+        for (let y = y0; y < y1; y++) { const k = ((y - y0) / (y1 - y0)) * n; const a = Math.min(n - 1, k | 0), f = k - a;
+          for (let x = 0; x < W; x++) buf[y * W + x] = bayer(x, y) < f ? cols[a + 1] : cols[a]; }
+      },
+      estrellas(t, n, ymax, sem = 7) {
+        let s = sem; const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+        for (let i = 0; i < n; i++) { const x = r() * W, y = r() * ymax, f = r() * 6.28, v = r();
+          const b = 0.5 + 0.5 * Math.sin(t * (0.6 + v) + f); // parpadeo lento (< 1 Hz)
+          if (b > 0.35) p.put(x, y, b > 0.8 && v > 0.7 ? 0xffffffff : v > 0.5 ? 0xffffd2cf : 0xffffa8b9); }
+      },
+      esfera(cx, cy, r, cols, luz = [-0.6, -0.5]) { // disco sombreado con trama
+        for (let y = -r; y <= r; y++) for (let x = -r; x <= r; x++) { const d = x * x + y * y; if (d > r * r) continue;
+          const z = Math.sqrt(r * r - d) / r, l = Math.max(0, (x / r) * luz[0] + (y / r) * luz[1] + z * 0.6);
+          const k = Math.min(cols.length - 1.001, l * (cols.length - 1)); const a = k | 0;
+          p.put(cx + x, cy + y, bayer(cx + x, cy + y) < k - a ? cols[a + 1] : cols[a]); }
+      },
+      elipse(cx, cy, rx, ry, ang, c, desde = 0, hasta = 6.2832, paso = 0.01) {
+        const ca = Math.cos(ang), sa = Math.sin(ang);
+        for (let a = desde; a < hasta; a += paso) { const x = Math.cos(a) * rx, y = Math.sin(a) * ry; p.put(cx + x * ca - y * sa, cy + x * sa + y * ca, c); }
+      },
+      volcar() { ctx.putImageData(img, 0, 0); },
+    };
+    return p;
+  }
+
+  // Aurora: cortinas verticales tramadas sobre la línea yc
+  function aurora(p, t, yc, alto, cA, cB, fuerza = 1) {
+    for (let x = 0; x < p.W; x++) {
+      const base = yc + Math.sin(x * 0.045 + t * 0.35) * alto * 0.25 + Math.sin(x * 0.11 - t * 0.5) * alto * 0.1;
+      const rayo = 0.55 + 0.45 * Math.sin(x * 0.7 + Math.sin(x * 0.13 + t * 0.6) * 3);
+      const onda = (0.55 + 0.45 * Math.sin(x * 0.025 + t * 0.4)) * fuerza;
+      for (let y = Math.max(0, (base - alto) | 0); y < base + 2; y++) {
+        const v = 1 - (base - y) / alto;
+        const a = v * v * rayo * onda;
+        if (a > bayer(x, y) * 1.1) p.put(x, y, v > 0.72 ? cA : cB);
+      }
+    }
+  }
+  function montes(p, ybase, amp, col, nieve, sem = 1, fr = 0.03) {
+    for (let x = 0; x < p.W; x++) {
+      const h = ((Math.sin(x * fr + sem) + Math.sin(x * fr * 2.3 + sem * 3) * 0.5) * 0.5 + 0.5) * amp;
+      const top = Math.round((ybase - h) / 2) * 2; // escalones de 2 px
+      for (let y = top; y < p.H; y++) p.put(x, y, col);
+      if (nieve && h > amp * 0.55) p.put(x, top, nieve);
+    }
+  }
+
+  /* ---------- Paletas y escenas ---------- */
+  const PAL = {
+    aurora: { cielo: ["#04050f", "#070a1d", "#0b1130", "#141b48"], a: "#5cff9a", b: "#9b7bff", tierra: ["#1a2250", "#0f1636"], nieve: "#c9d5f5", caja: "#0b0d1a", borde: "#2b2f55", texto: "#f4f1ff", resalte: "#5cff9a", planeta: ["#1d2a6b", "#3a57b8", "#6f9be8", "#c4dcff"], anillo: "#e7d9a8" },
+    ocaso: { cielo: ["#1a0b2e", "#3b1450", "#7a2a5a", "#d9603b"], a: "#ffd166", b: "#ff7b5c", tierra: ["#2a1036", "#160822"], nieve: "#ffb38a", caja: "#1a0b2e", borde: "#5b2a6e", texto: "#fff1e0", resalte: "#ffd166", planeta: ["#5a1e2e", "#b24a3a", "#ef8a4c", "#ffd9a0"], anillo: "#ffe8c2" },
+    musgo: { cielo: ["#06110c", "#0b1f17", "#123326", "#1d4a35"], a: "#c6ff6b", b: "#4fd1a5", tierra: ["#163a29", "#0b2117"], nieve: "#9fe0b8", caja: "#06110c", borde: "#24543d", texto: "#effff4", resalte: "#c6ff6b", planeta: ["#1b4332", "#2d6a4f", "#52b788", "#b7e4c7"], anillo: "#e9f5c9" },
+    papel: { cielo: ["#efe6cf", "#e6dbbf", "#dccfae", "#cfc09a"], a: "#2a2f6b", b: "#c8323f", tierra: ["#b9a77c", "#9c8a60"], nieve: "#fff8e6", caja: "#141833", borde: "#141833", texto: "#f6f1e3", resalte: "#ffb627", planeta: ["#2a2f6b", "#4a55a8", "#8b95d9", "#d6dbff"], anillo: "#c8323f" },
+  };
+  const conv = (o) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Array.isArray(v) ? v.map(hex) : hex(v)]));
+  const P = Object.fromEntries(Object.entries(PAL).map(([k, v]) => [k, conv(v)]));
+
+  const ESCENAS = {
+    cielo(p, t, c) {
+      p.franjas(c.cielo, 0, p.H);
+      p.estrellas(t, p.W * 0.35, p.H * 0.6);
+      aurora(p, t, p.H * 0.36, p.H * 0.22, c.a, c.b);
+      montes(p, p.H * 0.62, p.H * 0.08, c.tierra[0], c.nieve, 2, 0.04);
+      montes(p, p.H * 0.68, p.H * 0.05, c.tierra[1], 0, 5, 0.07);
+    },
+    planeta(p, t, c) {
+      p.franjas([c.cielo[0], c.cielo[1], c.cielo[1]], 0, p.H);
+      p.estrellas(t, p.W * 0.45, p.H, 11);
+      const cx = p.W / 2, cy = p.H * 0.38, r = p.W * 0.27;
+      p.elipse(cx, cy, r * 1.75, r * 0.38, -0.32, c.anillo, Math.PI, 2 * Math.PI, 0.004);
+      p.esfera(cx, cy, r | 0, c.planeta);
+      for (let y = -r; y <= r; y += 1) { // bandas que giran
+        const w = Math.sqrt(r * r - y * y);
+        if (Math.sin(y * 0.35 + 1) > 0.75) for (let x = -w; x < w; x += 1) if (bayer(cx + x, cy + y) < 0.35 + 0.15 * Math.sin(x * 0.2 + t)) p.put(cx + x, cy + y, c.planeta[0]);
+      }
+      p.elipse(cx, cy, r * 1.75, r * 0.38, -0.32, c.anillo, 0, Math.PI, 0.004);
+      p.elipse(cx, cy, r * 1.62, r * 0.33, -0.32, c.anillo, 0, Math.PI, 0.004);
+    },
+    atomo(p, t, c) {
+      p.franjas([c.cielo[0], c.cielo[1], c.cielo[2]], 0, p.H);
+      p.estrellas(t, p.W * 0.2, p.H, 3);
+      const cx = p.W / 2, cy = p.H * 0.38, R = p.W * 0.36;
+      const angs = [0, 1.047, 2.094];
+      angs.forEach((a) => p.elipse(cx, cy, R, R * 0.32, a, c.borde === c.caja ? c.b : c.planeta[1], 0, 6.2832, 0.006));
+      const nuc = [[0, 0, 1], [-5, -3, 0], [5, -2, 1], [-2, 5, 0], [4, 5, 1], [0, -7, 0], [-7, 3, 1]];
+      nuc.forEach(([x, y, k]) => p.esfera(cx + x, cy + y, 6, k ? [c.planeta[0], c.planeta[1], c.planeta[2]] : [c.tierra[1], c.b, c.a]));
+      angs.forEach((a, i) => { const u = t * 1.4 + i * 2.1, x = Math.cos(u) * R, y = Math.sin(u) * R * 0.32;
+        p.esfera(cx + x * Math.cos(a) - y * Math.sin(a), cy + x * Math.sin(a) + y * Math.cos(a), 4, [c.a, c.a, c.texto]); });
+    },
+    azul(p, t) {
+      p.franjas(["#1e3a8a", "#2563eb", "#60a5fa", "#bfdbfe"].map(hex), 0, p.H * 0.72);
+      const sx = p.W * 0.72, sy = p.H * 0.2;
+      p.esfera(sx, sy, (p.W * 0.09) | 0, ["#fde68a", "#fef3c7", "#ffffff"].map(hex), [0.3, -0.3]);
+      for (let k = 0; k < 40; k++) { // la luz azul rebota en todas direcciones
+        const a = k * 2.4 + t * 0.2, d = ((k * 37 + t * 18) % (p.W * 0.7));
+        p.put(sx + Math.cos(a) * d, sy + Math.sin(a) * d * 1.4, hex(k % 3 ? "#dbeafe" : "#93c5fd"));
+      }
+      const nube = (x, y) => [[0, 2, 14, 4], [3, 0, 8, 2], [2, 6, 10, 1]].forEach(([i, j, w, h]) => p.rect(x + i, y + j, w, h, hex("#f8fafc")));
+      nube((p.W * 0.12 + t * 3) % p.W, p.H * 0.32); nube((p.W * 0.55 + t * 2) % p.W, p.H * 0.45);
+      montes(p, p.H * 0.78, p.H * 0.08, hex("#15803d"), hex("#86efac"), 3, 0.04);
+      montes(p, p.H * 0.84, p.H * 0.05, hex("#166534"), 0, 6, 0.07);
+    },
+    luna(p, t) {
+      p.franjas([hex("#05060f"), hex("#0a0d22")], 0, p.H);
+      p.estrellas(t, p.W * 0.4, p.H, 5);
+      const cx = p.W / 2, cy = p.H * 0.42, r = p.W * 0.3;
+      p.esfera(cx, cy, r | 0, ["#3a3d52", "#6d7088", "#a9acc2", "#e3e5f2"].map(hex));
+      [[-8, -6, 6], [9, 4, 4], [-3, 10, 3], [6, -12, 3]].forEach(([x, y, rr]) => p.esfera(cx + x * r / 30, cy + y * r / 30, (rr * r / 30) | 0, ["#2c2f42", "#55586f"].map(hex), [0.6, 0.5]));
+    },
+    sol(p, t) {
+      p.franjas([hex("#05060f"), hex("#0d0a1c")], 0, p.H);
+      p.estrellas(t, p.W * 0.3, p.H, 9);
+      const cx = p.W * 0.38, cy = p.H * 0.4, r = p.W * 0.24;
+      for (let k = 0; k < 18; k++) { const a = (k / 18) * 6.2832 + t * 0.1; for (let d = r + 3; d < r + 3 + 5 + 3 * Math.sin(t * 2 + k); d++) p.put(cx + Math.cos(a) * d, cy + Math.sin(a) * d, hex("#ffb627")); }
+      p.esfera(cx, cy, r | 0, ["#c2410c", "#f97316", "#fdba74", "#fff3c4"].map(hex), [0.4, -0.4]);
+      const tx = p.W * 0.86, ty = p.H * 0.66;
+      for (let d = 0; d < 1; d += 0.02) { const x = cx + (tx - cx) * d, y = cy + (ty - cy) * d; if ((d * 50 - t * 6) % 6 < 2) p.put(x, y, hex("#fff3c4")); }
+      p.esfera(tx, ty, 4, ["#1d4ed8", "#3b82f6", "#86efac"].map(hex));
+    },
+    corazon(p, t) {
+      p.franjas([hex("#1a0710"), hex("#2a0b1a"), hex("#3b0f24")], 0, p.H);
+      const M = ["..XXX...XXX..", ".XXXXX.XXXXX.", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", ".XXXXXXXXXXX.", "..XXXXXXXXX..", "...XXXXXXX...", "....XXXXX....", ".....XXX.....", "......X......"];
+      const lat = Math.max(0, Math.sin(t * 2 * Math.PI * 1.1)) ** 6; // ~66 latidos por minuto
+      const s = Math.round(p.W / 20 + lat * 1), x0 = (p.W - 13 * s) / 2 | 0, y0 = (p.H * 0.4 - 5.5 * s) | 0;
+      M.forEach((fila, j) => [...fila].forEach((ch, i) => { if (ch === "X") p.rect(x0 + i * s, y0 + j * s, s, s, (i < 4 && j < 3) || (i === 2 && j === 3) ? hex("#ff9db0") : hex("#ff3b5c")); }));
+      for (let x = 0; x < p.W; x++) { const k = ((x - t * 30) % 60 + 60) % 60; const y = p.H * 0.72 + (k > 26 && k < 30 ? -(k - 26) * 5 : k >= 30 && k < 34 ? (k - 34) * 5 + 0 : 0); p.put(x, y, hex("#5cff9a")); }
+    },
+  };
+
+  /* ---------- Cielo de la portada ---------- */
+  const cielo = document.getElementById("cielo");
+  cielo.width = 240; cielo.height = 150;
+  const pc = Pintor(cielo), cA = P.aurora;
+  function pintarCielo(t) {
+    pc.franjas([hex("#05060f"), hex("#070a1d"), hex("#0b1130"), hex("#0b0d1a")], 0, pc.H);
+    pc.estrellas(t, 90, pc.H * 0.75, 4);
+    aurora(pc, t, pc.H * 0.42, pc.H * 0.3, cA.a, cA.b, 0.8);
+    montes(pc, pc.H * 0.86, pc.H * 0.1, hex("#141a3f"), hex("#8e9cd0"), 1, 0.035);
+    montes(pc, pc.H * 0.94, pc.H * 0.06, hex("#0b0d1a"), 0, 4, 0.06);
+    pc.volcar();
+  }
+
+  /* ---------- Pantallas de vídeo ---------- */
+  const animadas = [];
+  function pantalla(v) {
+    const b = document.createElement("button");
+    b.className = "pix pantalla" + (v.video ? "" : " proximo");
+    b.dataset.tema = v.tema;
+    b.setAttribute("aria-label", v.video ? "Ver: " + v.titulo : v.titulo + " (próximamente)");
+    if (!v.video) b.setAttribute("aria-disabled", "true");
+    const marco = document.createElement("div"); marco.className = "marco";
+    if (v.video) {
+      const vid = document.createElement("video");
+      vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = "metadata";
+      vid.poster = media(v.portada); vid.src = media(v.video);
+      marco.appendChild(vid);
+      if (!quieto) { b.addEventListener("mouseenter", () => vid.play().catch(() => {})); b.addEventListener("mouseleave", () => vid.pause()); }
+      marco.insertAdjacentHTML("beforeend", `<span class="sello ya">${v.vistas ? v.vistas + " vistas" : "Nuevo"}</span><span class="play"></span>`);
+      b.addEventListener("click", () => abrir(v));
+    } else if (v.portada) {
+      const img = document.createElement("img"); img.src = media(v.portada); img.alt = ""; img.loading = "lazy";
+      marco.appendChild(img);
+      marco.insertAdjacentHTML("beforeend", `<span class="sello">Próximamente</span>`);
+    } else {
+      const cv = document.createElement("canvas"); cv.width = 135; cv.height = 240;
+      marco.appendChild(cv);
+      const pp = Pintor(cv), f = ESCENAS[v.dibujo] || ESCENAS.cielo;
+      const pintar = (t) => { f(pp, t, P.aurora); pp.volcar(); };
+      pintar(1.5);
+      animadas.push({ el: b, pintar, activa: false });
+      marco.insertAdjacentHTML("beforeend", `<span class="sello">Próximamente</span>`);
+    }
+    b.appendChild(marco);
+    const info = document.createElement("div"); info.className = "info";
+    info.innerHTML = `<h3></h3><span class="etq">${{ espacio: "Espacio", alrededor: "A tu alrededor", cuerpo: "Tu cuerpo" }[v.tema] || ""}</span>`;
+    info.querySelector("h3").textContent = v.titulo;
+    b.appendChild(info);
+    return b;
+  }
+  const rejilla = document.getElementById("rejilla");
+  CONFIG.videos.forEach((v) => rejilla.appendChild(pantalla(v)));
+  // Portada: los dos primeros vídeos
+  raiz.querySelectorAll("[data-pantalla]").forEach((hueco) => { const v = CONFIG.videos[+hueco.dataset.pantalla]; if (v) hueco.replaceWith(pantalla(v)); });
+
+  // Filtros
+  raiz.querySelectorAll("#videos .chip").forEach((ch) => ch.addEventListener("click", () => {
+    raiz.querySelectorAll("#videos .chip").forEach((o) => o.setAttribute("aria-pressed", o === ch));
+    rejilla.querySelectorAll(".pantalla").forEach((p) => { p.hidden = ch.dataset.tema !== "todos" && p.dataset.tema !== ch.dataset.tema; });
+  }));
+
+  // Visor
+  const visor = document.getElementById("visor"), vv = document.getElementById("visor-video");
+  function abrir(v) {
+    vv.src = media(v.video); vv.poster = media(v.portada);
+    document.getElementById("visor-titulo").textContent = v.titulo;
+    visor.showModal(); vv.play().catch(() => {});
+  }
+  const cerrar = () => { vv.pause(); visor.close(); };
+  document.getElementById("visor-cerrar").addEventListener("click", cerrar);
+  visor.addEventListener("click", (e) => { if (e.target === visor) cerrar(); });
+  visor.addEventListener("close", () => vv.pause());
+
+  /* ---------- Demo: tu pregunta en píxeles ---------- */
+  const dl = document.getElementById("demo-lienzo"), dp = Pintor(dl);
+  const texto = document.getElementById("demo-texto");
+  let escena = "cielo", paleta = "aurora";
+  const off = document.createElement("canvas"); off.width = dl.width; off.height = dl.height;
+  const octx = off.getContext("2d", { willReadFrequently: true });
+  function lineas(ctx, s, max) {
+    const pal = s.trim().split(/\s+/), out = []; let l = "";
+    for (const w of pal) { const n = l ? l + " " + w : w; if (ctx.measureText(n).width > max && l) { out.push(l); l = w; } else l = n; }
+    if (l) out.push(l); return out.slice(0, 4);
+  }
+  function rotulo(t) {
+    const c = P[paleta], W = dp.W;
+    const s = texto.value || texto.placeholder;
+    octx.clearRect(0, 0, W, dp.H);
+    octx.font = '500 17px "Pixelify Sans"'; octx.textAlign = "center"; octx.textBaseline = "top";
+    const ls = lineas(octx, s, 206), lh = 19, h = ls.length * lh + 16, y0 = 318;
+    // caja con esquinas recortadas
+    const bx = 22, bw = W - 44;
+    for (let y = y0 - 3; y < y0 + h + 3; y++) for (let x = bx - 3; x < bx + bw + 3; x++) {
+      const borde = x < bx || x >= bx + bw || y < y0 || y >= y0 + h;
+      const esquina = (x < bx || x >= bx + bw) && (y < y0 || y >= y0 + h);
+      if (!esquina) dp.put(x, y, borde ? c.borde : c.caja);
+    }
+    // texto binarizado: cada píxel o está o no está
+    octx.fillStyle = "#fff";
+    const visibles = quieto ? 1e9 : Math.floor(t * 30);
+    let n = 0;
+    ls.forEach((l, i) => { const vis = l.slice(0, Math.max(0, visibles - n)); n += l.length; octx.fillText(vis, W / 2, y0 + 8 + i * lh); });
+    const d = octx.getImageData(0, 0, W, dp.H).data;
+    for (let i = 0; i < W * dp.H; i++) if (d[i * 4 + 3] > 120) dp.buf[i] = c.texto;
+    // cifra decorativa del gancho
+    const marca = c.resalte;
+    for (let x = bx + 8; x < bx + 26; x++) dp.put(x, y0 + h + 6, marca);
+  }
+  let t0 = performance.now();
+  function pintarDemo(ahora) {
+    const t = (ahora - t0) / 1000;
+    ESCENAS[escena](dp, t, P[paleta]);
+    rotulo(t);
+    dp.volcar();
+  }
+  texto.addEventListener("input", () => { t0 = performance.now() - 10000; pintarDemo(performance.now()); });
+  function grupo(id, attr, set) {
+    document.getElementById(id).addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      document.querySelectorAll("#" + id + " button").forEach((o) => o.setAttribute("aria-pressed", o === b));
+      set(b.dataset[attr]); pintarDemo(performance.now());
+    });
+  }
+  grupo("demo-escenas", "escena", (v) => (escena = v));
+  grupo("demo-paletas", "paleta", (v) => (paleta = v));
+
+  /* ---------- La leyenda: habitación de noche, el cartucho entra y la tele se enciende ---------- */
+  const hab = document.getElementById("habitacion"), ph = Pintor(hab);
+  const sub = (w, h) => { const c = document.createElement("canvas"); c.width = w; c.height = h; return Pintor(c); };
+  const ventana = sub(44, 42), tele = sub(50, 32);
+  const tonos = (o) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, hex(v)]));
+  const C = tonos({
+    pared0: "#0f0b26", pared: "#161236", pared2: "#1e1946", motivo: "#251f55", zocalo: "#2a2450", zocalo2: "#0c0a1c",
+    suelo: "#3b2618", suelo2: "#2a1a10", suelo3: "#4a3020", luzPared: "#352d7a", luzSuelo: "#6a452b",
+    marco: "#3d3666", marcoLuz: "#5a5290", cortina: "#2b2257", pliegue: "#3a2f70", barra: "#8a7fb8",
+    mueble: "#5b3a25", muebleLuz: "#7b5437", muebleSombra: "#3e2718", pomo: "#ffb627",
+    tv: "#2e2b48", tvLuz: "#4a4675", tvSombra: "#1b192e", bisel: "#0e0d1a", apagada: "#101818", reflejo: "#23302f",
+    consola: "#cfcbe0", consolaLuz: "#e9e6f4", consolaSombra: "#9894b3", oscuro: "#55526f", ranura: "#1b192e",
+    ledOff: "#4a1820", ledOn: "#5cff9a", rojo: "#ff5c6c",
+    cart: "#8e8aac", cartLuz: "#b8b4cf", cartSombra: "#66627f", etiqueta: "#9b7bff", verde: "#5cff9a", oro: "#ffb627",
+    amarillo: "#ffe066", polvo: "#d9d4ea", alfombra: "#2b2257", alfombra2: "#3a2f70", alfombra3: "#9b7bff",
+    poster: "#101a44", blanco: "#f4f1ff", negro: "#05060f", cielo1: "#070a1d", cielo2: "#0b1130", cielo3: "#141b48",
+    monte: "#141a3f", nieve: "#8e9cd0", azul: "#6fb6ff",
+  });
+  // Letras de 3×5 píxeles, propias
+  const LETRAS = { P: "111101111100100", U: "101101101101111", L: "100100100100111", S: "111100111001111", A: "111101111101101", T: "111010010010010", R: "111101110101101", I: "111010010010111", X: "101101010101101", E: "111100110100111", O: "111101101101111", G: "111100101101111", C: "111100100100111", "0": "111101101101111", F: "111100110100100" };
+  function letras(p, s, x, y, col, col0 = col) {
+    for (const ch of s) {
+      if (ch === " ") { x += 2; continue; }
+      const g = LETRAS[ch];
+      for (let i = 0; i < 15; i++) if (g[i] === "1") p.put(x + (i % 3), y + ((i / 3) | 0), ch === "0" ? col0 : col);
+      x += 4;
+    }
+  }
+  const linea = (p, x0, y0, x1, y1, c) => { const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1); for (let i = 0; i <= n; i++) p.put(Math.round(x0 + ((x1 - x0) * i) / n), Math.round(y0 + ((y1 - y0) * i) / n), c); };
+  const pegar = (dst, src, x0, y0, redondo) => {
+    for (let y = 0; y < src.H; y++) for (let x = 0; x < src.W; x++) {
+      if (redondo && Math.min(x, src.W - 1 - x) + Math.min(y, src.H - 1 - y) < 2) continue;
+      dst.put(x0 + x, y0 + y, src.buf[y * src.W + x]);
+    }
+  };
+  const tenue = (c) => (((c >>> 1) & 0x7f7f7f) + ((c >>> 2) & 0x3f3f3f)) | 0xff000000; // 3/4 de brillo
+  const BOMBILLA = [".yyy.", "yyywy", "yyyyy", ".yyy.", ".ggg.", "..g.."];
+
+  function cartucho(p, x, y, ymax) {
+    const put = (i, j, c) => { if (y + j <= ymax) p.put(x + i, y + j, c); };
+    for (let j = 0; j < 20; j++) for (let i = 0; i < 18; i++) {
+      if (j === 0 && (i < 2 || i > 15)) continue;
+      put(i, j, i === 17 || j === 19 ? C.cartSombra : i === 0 || j <= 1 ? C.cartLuz : C.cart);
+    }
+    for (const j of [3, 5]) for (let i = 5; i < 13; i++) put(i, j, C.cartSombra);
+    for (let j = 7; j < 18; j++) for (let i = 2; i < 16; i++) put(i, j, j < 9 ? C.verde : C.etiqueta);
+    BOMBILLA.forEach((fila, j) => [...fila].forEach((ch, i) => { if (ch !== ".") put(6 + i, 10 + j, ch === "y" ? C.amarillo : ch === "w" ? C.blanco : C.polvo); }));
+    for (let i = 3; i < 15; i += 2) put(i, 19, C.oro); // contactos
+  }
+
+  const CICLO = 9; // s: flota → (soplido) → entra → tele encendida → se apaga → sale
+  function pintarHabitacion(t) {
+    const p = ph, f = ((t % CICLO) + CICLO) % CICLO;
+    const suave = (u) => u * u * (3 - 2 * u);
+    const cy = f < 2 ? 70 - ((f * 2) & 1) : f < 3 ? 70 + Math.round(suave(f - 2) * 21) : f < 8.4 ? 91 : 91 - Math.round(suave((f - 8.4) / 0.6) * 21);
+    const enc = f < 3 ? 0 : f < 3.6 ? (f - 3) / 0.6 : f < 8 ? 1 : f < 8.4 ? 1 - (f - 8) / 0.4 : 0;
+
+    // Pared con motivo, zócalo y tarima
+    p.franjas([C.pared0, C.pared, C.pared2], 0, 88);
+    for (let y = 4; y < 86; y += 8) for (let x = (y & 8) ? 0 : 4; x < p.W; x += 8) p.put(x, y, C.motivo);
+    p.rect(0, 88, p.W, 1, C.zocalo); p.rect(0, 89, p.W, 3, C.zocalo2);
+    for (let y = 92; y < p.H; y++) {
+      const fila = ((y - 92) / 6) | 0, junta = (y - 92) % 6 === 0;
+      for (let x = 0; x < p.W; x++) {
+        const corte = (x + fila * 23) % 44 === 0;
+        p.put(x, y, junta || corte ? C.suelo2 : bayer(x, y) < (y - 92) / 60 ? C.suelo : (fila & 1 ? C.suelo3 : C.suelo));
+      }
+    }
+    // Luz de la tele sobre pared y suelo
+    if (enc > 0) for (let y = 0; y < p.H; y++) for (let x = 0; x < p.W; x++) {
+      const d = Math.hypot((x - 97) * 0.75, y - 50) / 78, a = enc * Math.max(0, 1 - d) ** 1.5;
+      if (a > bayer(x, y) * 0.85 + 0.06) p.put(x, y, y < 88 ? C.luzPared : y > 91 ? C.luzSuelo : C.zocalo);
+    }
+
+    // Ventana con aurora
+    const v = ventana;
+    v.franjas([C.negro, C.cielo1, C.cielo2, C.cielo3], 0, v.H);
+    v.estrellas(t, 26, v.H * 0.7, 3);
+    aurora(v, t, 26, 22, C.verde, C.etiqueta, 1.6);
+    montes(v, v.H - 3, 7, C.monte, C.nieve, 2, 0.12);
+    pegar(p, v, 14, 12);
+    p.rect(11, 9, 50, 3, C.marco); p.rect(11, 54, 50, 3, C.marco); p.rect(11, 9, 3, 48, C.marco); p.rect(58, 9, 3, 48, C.marco);
+    p.rect(35, 12, 2, 42, C.marco); p.rect(14, 32, 44, 2, C.marco); p.rect(11, 9, 50, 1, C.marcoLuz);
+    p.rect(7, 56, 58, 3, C.marcoLuz); p.rect(7, 59, 58, 1, C.zocalo2);
+    p.rect(3, 5, 66, 1, C.barra); p.rect(2, 4, 2, 3, C.barra); p.rect(68, 4, 2, 3, C.barra);
+    for (const [x0, lado] of [[5, 1], [60, -1]]) for (let x = 0; x < 8; x++) {
+      const largo = 58 + ((x * 5) % 4) - (lado > 0 ? x : 7 - x) % 3;
+      for (let y = 6; y < largo; y++) p.put(x0 + x, y, x % 3 === 1 ? C.pliegue : C.cortina);
+    }
+
+    // Póster de un planeta y estante con cartuchos
+    p.rect(160, 12, 30, 37, C.blanco); p.rect(161, 13, 28, 35, C.poster);
+    [[165, 17], [184, 20], [168, 38], [186, 34], [163, 30]].forEach(([x, y]) => p.put(x, y, C.blanco));
+    p.elipse(175, 28, 12, 3, -0.3, hex("#e7d9a8"), Math.PI, 2 * Math.PI, 0.02);
+    p.esfera(175, 28, 7, ["#1d2a6b", "#3a57b8", "#6f9be8", "#c4dcff"].map(hex));
+    p.elipse(175, 28, 12, 3, -0.3, hex("#e7d9a8"), 0, Math.PI, 0.02);
+    p.rect(166, 41, 18, 2, C.verde); p.rect(169, 44, 12, 1, C.marcoLuz);
+    p.rect(160, 12, 2, 2, C.oro); p.rect(188, 12, 2, 2, C.oro);
+    [C.etiqueta, C.verde, C.oro, C.rojo, C.azul].forEach((col, k) => {
+      const x = 158 + k * 7;
+      p.rect(x, 56, 6, 10, C.cart); p.rect(x, 56, 6, 1, C.cartLuz); p.rect(x + 5, 57, 1, 9, C.cartSombra); p.rect(x + 1, 58, 4, 6, col);
+    });
+    p.rect(154, 66, 42, 2, C.muebleLuz); p.rect(154, 68, 42, 1, C.muebleSombra);
+    p.rect(158, 69, 2, 3, C.muebleSombra); p.rect(190, 69, 2, 3, C.muebleSombra);
+
+    // Mueble
+    p.rect(56, 70, 96, 3, C.muebleLuz); p.rect(58, 73, 92, 25, C.mueble); p.rect(58, 97, 92, 1, C.muebleSombra);
+    for (const x0 of [62, 106]) { p.rect(x0, 76, 40, 1, C.muebleSombra); p.rect(x0, 94, 40, 1, C.muebleSombra); p.rect(x0, 76, 1, 19, C.muebleSombra); p.rect(x0 + 39, 76, 1, 19, C.muebleSombra); p.rect(x0 + 1, 77, 38, 1, C.muebleLuz); }
+    p.rect(99, 84, 2, 2, C.pomo); p.rect(107, 84, 2, 2, C.pomo);
+    p.rect(58, 98, 92, 2, C.suelo2);
+
+    // Tele de tubo
+    linea(p, 97, 24, 86, 8, C.oscuro); linea(p, 109, 24, 121, 6, C.oscuro);
+    p.rect(85, 7, 2, 2, C.cartLuz); p.rect(120, 5, 2, 2, C.cartLuz);
+    p.rect(96, 21, 15, 5, C.tv); p.rect(97, 21, 13, 1, C.tvLuz);
+    for (let y = 26; y < 70; y++) for (let x = 66; x < 142; x++) {
+      if (Math.min(x - 66, 141 - x) + Math.min(y - 26, 69 - y) < 2) continue;
+      p.put(x, y, y === 26 || x === 66 ? C.tvLuz : y === 69 || x === 141 ? C.tvSombra : C.tv);
+    }
+    p.rect(70, 30, 54, 36, C.bisel);
+    p.esfera(132, 38, 3, [C.tvSombra, C.oscuro, C.consolaSombra]); p.esfera(132, 49, 3, [C.tvSombra, C.oscuro, C.consolaSombra]);
+    for (let y = 56; y < 66; y += 2) p.rect(127, y, 11, 1, C.tvSombra);
+    p.rect(72, 70, 6, 1, C.tvSombra); p.rect(130, 70, 6, 1, C.tvSombra);
+    const s = tele;
+    if (enc <= 0) {
+      s.rect(0, 0, s.W, s.H, C.apagada);
+      for (let i = 0; i < 9; i++) { s.put(36 + i, 3 + i, C.reflejo); s.put(39 + i, 3 + i, C.reflejo); }
+    } else {
+      s.franjas([C.negro, C.cielo2, C.cielo3], 0, s.H);
+      s.estrellas(t, 22, s.H - 4, 9);
+      montes(s, s.H - 1, 5, C.monte, C.nieve, 3, 0.15);
+      letras(s, "PIXELOGIC0", 6, 5, C.negro); letras(s, "PIXELOGIC0", 5, 4, C.blanco, C.verde);
+      const sube = f % 2 < 1 ? 0 : 1; // la bombilla flota a pasos
+      BOMBILLA.forEach((fila, j) => [...fila].forEach((ch, i) => { if (ch !== ".") s.put(23 + i, 12 + j - sube, ch === "y" ? C.amarillo : ch === "w" ? C.blanco : C.polvo); }));
+      if (f % 1 < 0.6) { letras(s, "PULSA START", 5, 23, C.negro); letras(s, "PULSA START", 4, 22, C.oro); }
+      if (enc < 1) { // encendido y apagado de tubo: línea que se abre
+        const alto = enc < 0.5 ? 1 : Math.max(1, Math.round((enc - 0.5) * 2 * s.H)), anchoB = enc < 0.5 ? Math.round(enc * 2 * s.W) : s.W;
+        const y0 = (s.H - alto) >> 1, x0 = (s.W - anchoB) >> 1;
+        for (let y = 0; y < s.H; y++) for (let x = 0; x < s.W; x++) {
+          const dentro = y >= y0 && y < y0 + alto && x >= x0 && x < x0 + anchoB;
+          if (!dentro) s.buf[y * s.W + x] = C.negro; else if (enc < 0.5) s.buf[y * s.W + x] = C.blanco;
+        }
+      }
+      for (let y = 1; y < s.H; y += 2) for (let x = 0; x < s.W; x++) s.buf[y * s.W + x] = tenue(s.buf[y * s.W + x]);
+    }
+    pegar(p, s, 72, 32, true);
+
+    // Alfombra, consola, cartucho y mando
+    for (let y = 99; y < p.H; y++) for (let x = 44; x < 158; x++) {
+      const d = ((x - 101) / 56) ** 2 + ((y - 113) / 13) ** 2;
+      if (d > 1 || (d > 0.9 && bayer(x, y) < (d - 0.9) * 10)) continue;
+      p.put(x, y, d > 0.78 ? C.alfombra2 : d > 0.7 ? C.alfombra3 : (((d * 6) | 0) & 1 ? C.alfombra : C.alfombra2));
+    }
+    p.rect(78, 118, 48, 2, C.zocalo2);
+    p.rect(78, 100, 46, 4, C.consolaLuz); p.rect(77, 101, 1, 3, C.consola); p.rect(124, 101, 1, 3, C.consolaSombra);
+    p.rect(90, 101, 20, 2, C.ranura);
+    cartucho(p, 91, cy, 101);
+    if (f > 0.5 && f < 1.7) { // el soplido de siempre
+      const u = f - 0.5;
+      for (let k = 0; k < 14; k++) {
+        const x = 100 + ((k % 7) - 3) * 7 * u, y = cy + 21 + (4 + ((k * 7) % 5) * 3) * u;
+        if (bayer(k, (u * 10) | 0) < 1 - u / 1.25) p.put(x, y, C.polvo);
+      }
+      if (u < 0.9) letras(p, "FUU", 112, cy + 4, C.polvo);
+    }
+    p.rect(77, 104, 48, 14, C.consola); p.rect(77, 104, 48, 1, C.consolaLuz); p.rect(124, 104, 1, 14, C.consolaSombra); p.rect(77, 117, 48, 1, C.consolaSombra);
+    p.rect(77, 107, 48, 3, C.oscuro); for (let x = 80; x < 122; x += 3) p.put(x, 108, C.ranura);
+    p.rect(81, 112, 3, 3, f >= 3 && f < 8.4 ? C.ledOn : C.ledOff);
+    p.rect(87, 112, 6, 3, C.rojo); p.rect(95, 112, 6, 3, C.consolaSombra);
+    linea(p, 125, 112, 128, 116, C.ranura); linea(p, 128, 116, 134, 117, C.ranura); linea(p, 134, 117, 137, 114, C.ranura);
+    p.rect(137, 109, 22, 9, C.consola); p.rect(137, 109, 22, 1, C.consolaLuz); p.rect(137, 117, 22, 1, C.consolaSombra);
+    p.rect(140, 112, 5, 1, C.ranura); p.rect(142, 110, 1, 5, C.ranura);
+    p.rect(151, 113, 2, 2, C.rojo); p.rect(154, 111, 2, 2, C.rojo);
+    p.volcar();
+  }
+
+  /* ---------- Bucle a 12 fps (aspecto de videojuego, poco gasto) ---------- */
+  const visibles = new Set();
+  const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? visibles.add(e.target) : visibles.delete(e.target))));
+  [cielo, dl, hab, ...animadas.map((a) => a.el)].forEach((el) => io.observe(el));
+  const arranque = () => {
+    pintarCielo(2); pintarDemo(performance.now()); pintarHabitacion(5);
+    if (quieto) return;
+    let ultimo = 0;
+    const bucle = (ahora) => {
+      requestAnimationFrame(bucle);
+      if (ahora - ultimo < 1000 / 12) return;
+      ultimo = ahora;
+      const t = ahora / 1000;
+      if (visibles.has(cielo)) pintarCielo(t);
+      if (visibles.has(dl)) pintarDemo(ahora);
+      if (visibles.has(hab)) pintarHabitacion(t);
+      animadas.forEach((a) => { if (visibles.has(a.el)) a.pintar(t); });
+    };
+    requestAnimationFrame(bucle);
+  };
+  (document.fonts ? document.fonts.load('500 17px "Pixelify Sans"').catch(() => {}) : Promise.resolve()).then(arranque);
+})();
+</script>
+</body>
+</html>
