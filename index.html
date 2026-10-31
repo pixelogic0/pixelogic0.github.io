@@ -138,6 +138,16 @@
 .bab .pantalla .play::before { content: ""; width: 14px; height: 18px; background: var(--verde); clip-path: polygon(0 0, 50% 0, 50% 22%, 100% 22%, 100% 78%, 50% 78%, 50% 100%, 0 100%); }
 .bab .pantalla:hover .info h3 { color: var(--verde); }
 .bab .pantalla.proximo { cursor: default; }
+/* Última pantalla de la rejilla: «más en Instagram» (no la tocan los filtros) */
+.bab .mas { display: block; width: calc(100% - 8px); padding: 0; overflow: hidden; color: inherit; text-decoration: none; }
+.bab .mas .marco { aspect-ratio: 9 / 16; display: grid; align-content: center; justify-items: center; gap: 14px; padding: 16px; text-align: center; background: radial-gradient(circle at 50% 40%, #1a1f45 0, #05060f 70%); }
+.bab .mas .marco img { width: 56px; height: auto; }
+.bab .mas .marco b { font: 400 40px/1 var(--titulo); color: var(--verde); }
+.bab .mas .marco span { font: 400 11px/1.5 var(--etiqueta); letter-spacing: .08em; color: var(--gris); }
+.bab .mas .info { padding: 12px 14px; background: var(--tinta); }
+.bab .mas .info h3 { font: 500 19px/1.15 var(--titulo); }
+.bab .mas .info .etq { color: var(--gris); font-size: 11px; margin-top: 6px; display: block; }
+.bab .mas:hover .info h3 { color: var(--verde); }
 .bab .pantalla.proximo .play { display: none; }
 
 /* ---------- Secciones ---------- */
@@ -153,7 +163,7 @@
 .bab .filtros { display: flex; flex-wrap: wrap; gap: 10px 12px; }
 .bab .chip { --b: var(--borde2); padding: 9px 13px 8px; font: 400 12px/1 var(--etiqueta); letter-spacing: .08em; text-transform: uppercase; background: var(--tinta); color: var(--gris); border: 0; cursor: pointer; box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b); margin: 4px; }
 .bab .chip[aria-pressed="true"] { background: var(--verde); color: #04140b; --b: #000; }
-.bab .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 22px; }
+.bab .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(146px, 1fr)); gap: 22px; }
 .bab .nota { color: var(--gris); font-size: 19px; margin-top: 22px; }
 
 /* Por qué */
@@ -376,6 +386,7 @@
           <button class="chip" aria-pressed="false" data-tema="espacio">Espacio</button>
           <button class="chip" aria-pressed="false" data-tema="alrededor">A tu alrededor</button>
           <button class="chip" aria-pressed="false" data-tema="cuerpo">Tu cuerpo</button>
+          <button class="chip" aria-pressed="false" data-tema="animales">Animales</button>
         </div>
       </div>
       <div class="rejilla" id="rejilla"></div>
@@ -672,6 +683,13 @@ window.BAB = {
     { titulo: "Aguanta la respiración", tema: "cuerpo", portada: "p4_respira.jpg" },
     { titulo: "¿Cuál es tu ojo jefe?", tema: "cuerpo", portada: "p5_ojo.jpg" },
     { titulo: "¿Por qué odias tu voz grabada?", tema: "cuerpo", portada: "p6_voz.jpg" },
+    { titulo: "¿Los delfines tienen nombre?", tema: "animales", portada: "p7_delfines.jpg" },
+    { titulo: "6.000 millones de letras sin erratas", tema: "cuerpo", portada: "p8_adn.jpg" },
+    { titulo: "¿Baya o no?", tema: "alrededor", portada: "p9_baya.jpg" },
+    { titulo: "La gota que aguanta un martillo", tema: "alrededor", portada: "p10_lagrima.jpg" },
+    { titulo: "El sudoku contra un robot que no piensa", tema: "alrededor", portada: "p11_sudoku.jpg" },
+    { titulo: "El disparo más rápido del mar", tema: "animales", portada: "p12_gamba.jpg" },
+    { titulo: "Las cacas cúbicas del wómbat", tema: "animales", portada: "p13_wombat.jpg" },
   ],
 };
 /* ============================================================= */
@@ -903,13 +921,17 @@ window.BAB = {
     }
     b.appendChild(marco);
     const info = document.createElement("div"); info.className = "info";
-    info.innerHTML = `<h3></h3><span class="etq">${{ espacio: "Espacio", alrededor: "A tu alrededor", cuerpo: "Tu cuerpo" }[v.tema] || ""}</span>`;
+    info.innerHTML = `<h3></h3><span class="etq">${{ espacio: "Espacio", alrededor: "A tu alrededor", cuerpo: "Tu cuerpo", animales: "Animales" }[v.tema] || ""}</span>`;
     info.querySelector("h3").textContent = v.titulo;
     b.appendChild(info);
     return b;
   }
   const rejilla = document.getElementById("rejilla");
   CONFIG.videos.forEach((v) => rejilla.appendChild(pantalla(v)));
+  const mas = document.createElement("a");
+  mas.className = "pix mas"; mas.href = CONFIG.instagram; mas.target = "_blank"; mas.rel = "noopener";
+  mas.innerHTML = `<div class="marco"><img src="${media("logo.png")}" alt=""><b>+</b><span>VÍDEOS NUEVOS<br>CADA SEMANA</span></div><div class="info"><h3>Más en Instagram</h3><span class="etq">@pixelogic0</span></div>`;
+  rejilla.appendChild(mas);
   // Portada: los dos primeros vídeos
   raiz.querySelectorAll("[data-pantalla]").forEach((hueco) => { const v = CONFIG.videos[+hueco.dataset.pantalla]; if (v) hueco.replaceWith(pantalla(v)); });
 
