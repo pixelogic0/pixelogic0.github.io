@@ -723,6 +723,7 @@ window.BAB = {
   usuario: "@pixelogic0",
   instagram: "https://www.instagram.com/pixelogic0/",
   payhip: "ZpuA6",                // código del producto en Payhip: lo que va tras payhip.com/b/ (p. ej. "AbC12"). Con él, el botón abre el pago de Payhip
+  goatcounter: "pixelogic0",      // contador de visitas sin cookies (GoatCounter). Vacío = sin contador
   comprar: "#comprar",            // sin Payhip: cualquier enlace de pago directo
   correo: "pixelogic0.ayuda@proton.me",
   terminos: "legal/condiciones.html", privacidad: "legal/privacidad.html", reembolsos: "legal/condiciones.html#devoluciones", aviso: "legal/aviso-legal.html",
@@ -792,6 +793,11 @@ window.BAB = {
   if (CONFIG.payhip) {
     botonesCompra.forEach((b) => { b.href = "https://payhip.com/b/" + CONFIG.payhip; b.classList.add("payhip-buy-button"); b.dataset.product = CONFIG.payhip; b.dataset.theme = "none"; });
     const s = document.createElement("script"); s.src = "https://payhip.com/payhip.js"; document.head.appendChild(s);
+  }
+  // Contador de visitas sin cookies (GoatCounter). Vacío = apagado: no se carga nada
+  if (CONFIG.goatcounter) {
+    const g = document.createElement("script"); g.async = true; g.src = "https://gc.zgo.at/count.js";
+    g.dataset.goatcounter = "https://" + CONFIG.goatcounter + ".goatcounter.com/count"; document.head.appendChild(g);
   }
 
   // Vídeo de caso de éxito: suena al tocar el botón; con movimiento reducido no arranca solo
