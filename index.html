@@ -100,6 +100,9 @@
 .bab .menu a { font: 400 12px/1 var(--etiqueta); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--gris); }
 .bab .menu a:hover { color: var(--verde); }
 .bab .barra .boton { padding: 10px 14px 9px; font-size: 12px; }
+.bab .lado { display: flex; align-items: center; gap: 12px; }
+.bab .idioma { --b: var(--borde2); display: inline-block; padding: 9px 9px 8px; margin: 4px; font: 400 12px/1 var(--etiqueta); letter-spacing: .1em; text-decoration: none; color: var(--gris); background: var(--tinta); box-shadow: 0 -4px 0 0 var(--b), 0 4px 0 0 var(--b), -4px 0 0 0 var(--b), 4px 0 0 0 var(--b); }
+.bab .idioma:hover { color: var(--verde); --b: var(--verde); }
 
 /* ---------- Portada (bento) ---------- */
 .bab .portada { position: relative; padding: 36px 0 56px; isolation: isolate; }
@@ -292,6 +295,29 @@
 .bab dialog.visor .cerrar { padding: 9px 12px 8px; font-size: 12px; }
 
 /* ---------- Móvil ---------- */
+/* OFERTA: lo primero que se ve (07/11/2026) */
+.bab .oferta { padding: 22px 0 8px; background: radial-gradient(120% 90% at 50% 0%, #2a1e05 0%, var(--noche) 62%); }
+.bab .oferta-caja { --b: var(--ambar); --sombra: rgba(255,182,39,.25); display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 34px; align-items: center; padding: 30px 36px 30px; background: #0b0d1a; }
+.bab .oferta .sello { display: inline-block; margin: 0 0 14px; padding: 7px 12px 6px; font: 400 13px/1 var(--etiqueta); letter-spacing: .1em; background: var(--rojo); color: #1a0306; box-shadow: 0 -3px 0 0 #000, 0 3px 0 0 #000, -3px 0 0 0 #000, 3px 0 0 0 #000; }
+.bab .oferta .kicker { font: 700 clamp(22px, 2.6vw, 30px)/1.1 var(--titulo); color: var(--amarillo); margin: 0 0 6px; }
+.bab .oferta h2 { font-size: clamp(54px, 8vw, 104px); color: var(--nieve); text-shadow: 6px 6px 0 #3a2a00; margin-bottom: 10px; }
+.bab .oferta .sub { color: var(--gris); font-size: 22px; max-width: 34em; }
+.bab .oferta-precio { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: 6px 0 16px; }
+.bab .oferta-precio .cifra-precio { font: 400 clamp(76px, 10vw, 124px)/.8 var(--texto); color: var(--ambar); text-shadow: 5px 5px 0 var(--ambar2); }
+.bab .oferta-precio small { font: 400 13px/1.3 var(--etiqueta); letter-spacing: .06em; color: var(--verde); text-transform: uppercase; }
+.bab .oferta .consiento { margin: 0 0 16px; max-width: 34em; }
+.bab .oferta .boton.grande { font-size: 20px; padding: 22px 30px 21px; }
+.bab .oferta .boton.grande[aria-disabled="true"] { filter: none; }
+.bab .oferta .cartucho { width: 100%; margin: 0; animation: flota 3.2s steps(4) infinite; }
+@keyframes flota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (max-width: 860px) {
+  .bab .oferta { padding-top: 12px; }
+  .bab .oferta-caja { grid-template-columns: 1fr; gap: 18px; padding: 20px 18px 22px; }
+  .bab .oferta .cartucho { width: 58%; margin: 0 auto; order: 2; }
+  .bab .oferta .sub { display: none; }
+  .bab .oferta .boton.grande { width: calc(100% - 8px); justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .bab .oferta .cartucho { animation: none; } }
 @media (max-width: 980px) {
   .bab .menu { display: none; }
   .bab .bento { grid-template-columns: 1fr 1fr; }
@@ -338,11 +364,36 @@
       <a href="#leyenda">La leyenda</a>
       <a href="#manual">El manual</a>
     </nav>
-    <a class="boton verde" data-enlace="instagram" href="#">Seguir</a>
+    <div class="lado">
+      <a class="boton verde" data-enlace="instagram" href="#">Seguir</a>
+    </div>
   </div>
 </header>
 
 <main id="inicio">
+  <!-- OFERTA: lo primero que se ve -->
+  <section class="oferta" aria-labelledby="oferta-tit">
+    <div class="envoltura">
+      <div class="pix oferta-caja">
+        <div>
+          <p class="sello">&#9733; PRECIO DE LANZAMIENTO &#9733;</p>
+          <p class="kicker">La guía completa para hacer tus vídeos</p>
+          <h2 id="oferta-tit">EL CARTUCHO</h2>
+          <p class="sub">El método exacto con el que hacemos estos vídeos de ciencia en pixel art: de un ordenador vacío a tu primer Reel, con tu estilo y tu música.</p>
+          <div class="oferta-precio"><span class="cifra-precio" data-dato="precio">29,99 €</span><small>Pago único<br>PDF + pack de extras · descarga inmediata</small></div>
+          <label class="consiento"><input type="checkbox" id="consiento-oferta" data-consiento><span class="casilla" aria-hidden="true"></span><span>Quiero la descarga ya y acepto que, al empezar, pierdo el derecho de desistimiento. Lee las <a data-enlace="terminos" href="#">condiciones</a>.</span></label>
+          <a class="boton grande" data-enlace="comprar" data-compra href="#">Comprar el cartucho <span class="flecha"></span></a>
+          <p class="aviso-compra" data-aviso role="status" hidden>Marca la casilla para continuar.</p>
+        </div>
+        <div class="cartucho" aria-hidden="true">
+          <div class="etiqueta">
+            <img data-media="cartucho" alt="">
+            <div class="rot"><b>EL CARTUCHO</b><span>GUÍA COMPLETA · PIXELOGIC0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- PORTADA -->
   <section class="portada">
     <canvas class="cielo" id="cielo" aria-hidden="true"></canvas>
@@ -547,11 +598,11 @@
             </div>
           </div>
           <div class="pix precio-caja" id="comprar">
-            <div class="precio" data-dato="precio">29 €</div>
+            <div class="precio" data-dato="precio">29,99 €</div>
             <span class="etq">Un solo pago · actualizaciones 1.x gratis</span>
-            <label class="consiento"><input type="checkbox" id="consiento"><span class="casilla" aria-hidden="true"></span><span>Quiero la descarga ya y acepto que, al empezar, pierdo el derecho de desistimiento. Lee las <a data-enlace="terminos" href="#">condiciones</a>.</span></label>
+            <label class="consiento"><input type="checkbox" id="consiento" data-consiento><span class="casilla" aria-hidden="true"></span><span>Quiero la descarga ya y acepto que, al empezar, pierdo el derecho de desistimiento. Lee las <a data-enlace="terminos" href="#">condiciones</a>.</span></label>
             <a class="boton" data-enlace="comprar" data-compra href="#">Insertar cartucho <span class="flecha"></span></a>
-            <p class="aviso-compra" id="aviso-compra" role="status" hidden>Marca la casilla para continuar.</p>
+            <p class="aviso-compra" id="aviso-compra" data-aviso role="status" hidden>Marca la casilla para continuar.</p>
             <p class="seguro">Descarga inmediata en PDF + pack de extras.</p>
           </div>
         </div>
@@ -627,7 +678,7 @@
       <h2>¿Jugamos el primer nivel?</h2>
       <p>Las ideas ya las tienes. EL CARTUCHO te da el estudio para convertir cada una en un vídeo de ciencia en pixel art, con un estilo que es solo tuyo.</p>
       <div class="acciones">
-        <a class="boton" href="#comprar">Comprar · <span data-dato="precio">29 €</span></a>
+        <a class="boton" href="#comprar">Comprar · <span data-dato="precio">29,99 €</span></a>
         <a class="boton fantasma" data-enlace="instagram" href="#">Ver el próximo vídeo</a>
       </div>
       <span class="insert">INSERTA EL CARTUCHO Y PULSA START</span>
@@ -661,7 +712,7 @@
    Lo único que hay que tocar para cambiar enlaces, precio y vídeos.
    En Shopify este bloque lo genera la propia sección con sus ajustes. */
 window.BAB = {
-  precio: "29 €",
+  precio: "29,99 €",
   usuario: "@pixelogic0",
   instagram: "https://www.instagram.com/pixelogic0/",
   payhip: "ZpuA6",                // código del producto en Payhip: lo que va tras payhip.com/b/ (p. ej. "AbC12"). Con él, el botón abre el pago de Payhip
@@ -714,15 +765,22 @@ window.BAB = {
   document.getElementById("anyo").textContent = new Date().getFullYear();
 
   // Compra: consentimiento expreso antes de pagar (contenido digital, art. 103.m TRLGDCU) y botón de Payhip
-  const casilla = document.getElementById("consiento"), avisoCompra = document.getElementById("aviso-compra");
+  // Hay una casilla en la oferta de arriba y otra en la ficha: marcar una marca las dos.
+  const casillas = [...raiz.querySelectorAll("input[data-consiento]")], avisos = raiz.querySelectorAll("[data-aviso]");
   const botonesCompra = raiz.querySelectorAll("[data-compra]");
-  const sincronizar = () => botonesCompra.forEach((b) => b.setAttribute("aria-disabled", String(!casilla.checked)));
-  casilla.addEventListener("change", () => { sincronizar(); if (casilla.checked) avisoCompra.hidden = true; });
+  const marcado = () => casillas.some((c) => c.checked);
+  const sincronizar = () => botonesCompra.forEach((b) => b.setAttribute("aria-disabled", String(!marcado())));
+  casillas.forEach((c) => c.addEventListener("change", () => {
+    casillas.forEach((o) => { o.checked = c.checked; });
+    sincronizar(); if (c.checked) avisos.forEach((a) => { a.hidden = true; });
+  }));
   sincronizar();
   botonesCompra.forEach((b) => b.addEventListener("click", (e) => {
-    if (casilla.checked) return;
+    if (marcado()) return;
     e.preventDefault(); e.stopImmediatePropagation();
-    avisoCompra.hidden = false; casilla.focus();
+    const caja = b.closest(".pix") || raiz;
+    const aviso = caja.querySelector("[data-aviso]") || avisos[0], casilla = caja.querySelector("input[data-consiento]") || casillas[0];
+    aviso.hidden = false; casilla.focus();
   }, true));
   if (CONFIG.payhip) {
     botonesCompra.forEach((b) => { b.href = "https://payhip.com/b/" + CONFIG.payhip; b.classList.add("payhip-buy-button"); b.dataset.product = CONFIG.payhip; b.dataset.theme = "none"; });
